@@ -1,7 +1,7 @@
 **Cégep Management System**
 
 This project aims to streamline academic operations at a cégep with a comprehensive management system. It includes a JavaFX desktop application for administrative tasks and a React.ts web application for student and teacher access. The system facilitates roles for students, teachers, and administrators, providing features such as schedules, messaging, assignments, exams, notifications, and statistics. The technologies used are Java, Spring Boot, React.ts, and PostgreSQL.
-caca
+
 
 **Requirements**
 - Java 11 or higher
