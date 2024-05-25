@@ -38,7 +38,7 @@ This project aims to streamline academic operations at a cégep with a comprehen
 - Include any acknowledgments or credits for libraries, resources, or individuals that contributed to the project.
 
 **Contact**
-- For inquiries or support, please contact [your-email-address].
+- For inquiries or support, please use the issues tab.
 
 **Note**
-- This project was developed as part of [course/institution name] and is intended for educational purposes.
+- This project was developed for self-development and is intended for educational purposes.
