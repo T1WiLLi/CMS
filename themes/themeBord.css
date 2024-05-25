@@ -1,0 +1,162 @@
+
+
+.button1 {
+    -fx-background-color: #1E88E5; /* Bleu primaire */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-font-weight: bold; /* Poids de la police */
+    -fx-padding: 10px 20px; /* Rembourrage */
+    -fx-background-radius: 30px; /* Coins arrondis */
+    -fx-border-radius: 30px; /* Coins arrondis */
+    -fx-border-color: #1E88E5; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-cursor: hand; /* Curseur au survol */
+    -fx-transition-duration: 0.3s; /* Durée de la transition */
+}
+
+/* Effet de survol */
+.button1:hover {
+    -fx-background-color: #005CB2; /* Bleu plus foncé au survol */
+    -fx-border-color: #005CB2; /* Couleur de la bordure plus foncée au survol */
+}
+
+/* Effet enfoncé */
+.button1:pressed {
+    -fx-background-color: #003C80; /* Bleu encore plus foncé lorsqu'enfoncé */
+    -fx-border-color: #003C80; /* Couleur de la bordure encore plus foncée lorsqu'enfoncé */
+}
+
+
+.button2 {
+    -fx-background-color: #0072BA; /* Primary blue */
+    -fx-text-fill: white; /* Text color */
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-background-radius: 4px; /* Rounded corners */
+    -fx-border-radius: 4px; /* Rounded corners */
+    -fx-border-color: #0072BA; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-transition-duration: 0.2s; /* Smooth transition duration */
+}
+
+/* Define hover effect */
+.button2:hover {
+    -fx-background-color: #1E88E5; /* Darker blue on hover */
+}
+
+/* Define pressed effect */
+.button2:pressed {
+    -fx-background-color: #005E9C; /* Even darker blue when pressed */
+}
+
+.button3 {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-text-fill: #0072BA; /* Blue text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 6px 12px; /* Padding */
+    -fx-background-radius: 8px; /* Slight rounded corners */
+    -fx-border-radius: 8px; /* Slight rounded corners */
+    -fx-border-color: #0072BA; /* Border color same as text */
+    -fx-border-width: 1px; /* Border width */
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-transition-duration: 0.3s; /* Smooth transition duration */
+}
+
+/* Hover effect */
+.button3:hover {
+    -fx-background-color: rgba(0, 114, 186, 0.1); /* Light blue background on hover */
+}
+
+/* Pressed effect */
+.button3:pressed {
+    -fx-background-color: rgba(0, 114, 186, 0.2); /* Slightly darker blue background when pressed */
+}
+
+/* Define a modern minimalist text field style */
+.field1 {
+    -fx-background-color: #F5F5F5; /* Background color */
+    -fx-text-fill: #333333; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 8px; /* Padding */
+    -fx-background-radius: 4px; /* Rounded corners */
+    -fx-border-radius: 4px; /* Rounded corners */
+    -fx-border-color: #CCCCCC; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-cursor: text; /* Text cursor */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 ); /* Shadow effect */
+    -fx-transition-duration: 0.2s; /* Smooth transition duration */
+}
+
+/* Hover effect */
+.field1:hover {
+    -fx-border-color: #B2B2B2; /* Darker border color on hover */
+}
+
+/* Focused effect */
+.field1:focused {
+    -fx-border-color: #0072BA; /* Blue border color when focused */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 3,0,0,1 ); /* Stronger shadow effect when focused */
+}
+
+/* Define a modern text field style */
+.field2 {
+    -fx-background-color: #f5f5f5; /* Background color */
+    -fx-text-fill: #333333; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 8px 12px; /* Padding */
+    -fx-background-radius: 20px; /* Rounded corners */
+    -fx-border-radius: 20px; /* Rounded corners */
+    -fx-border-color: #CCCCCC; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-cursor: text; /* Text cursor */
+    -fx-effect: innershadow(gaussian, #CCCCCC, 2, 0, 0, 1); /* Inner shadow effect */
+    -fx-transition-duration: 0.2s; /* Smooth transition duration */
+}
+
+/* Hover effect */
+.field2:hover {
+    -fx-background-color: #e0e0e0; /* Lighter background color on hover */
+}
+
+/* Focused effect */
+.field2:focused {
+    -fx-border-color: #0072BA; /* Blue border color when focused */
+    -fx-effect: innershadow(gaussian, #0072BA, 3, 0, 0, 1); /* Stronger inner shadow effect when focused */
+}
+
+/* Define a unique text field style */
+.field3 {
+    -fx-background-color: #FDF6E3; /* Background color */
+    -fx-text-fill: #586E75; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 10px 12px; /* Padding */
+    -fx-background-radius: 0; /* No rounded corners */
+    -fx-border-radius: 0; /* No rounded corners */
+    -fx-border-color: transparent; /* Transparent border */
+    -fx-border-width: 0; /* No border */
+    -fx-cursor: text; /* Text cursor */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 1, 1, 1, 1); /* Drop shadow effect */
+    -fx-transition-duration: 0.2s; /* Smooth transition duration */
+}
+
+/* Hover effect */
+.field3:hover {
+    -fx-background-color: #FFF8DC; /* Lighter background color on hover */
+}
+
+/* Focused effect */
+.field3:focused {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 2, 2, 2); /* Stronger drop shadow effect when focused */
+}
+
+/* Define a modern label style */
+.label1 {
+    -fx-text-fill: #333333; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+}
