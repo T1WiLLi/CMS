@@ -3,17 +3,17 @@ CREATE SCHEMA cms;
 SET search_path TO cms;
 
 CREATE TABLE type (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE department (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     lastName VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE employee (
-    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     seniority VARCHAR(50),
     type_id INT,
@@ -32,7 +32,7 @@ CREATE TABLE employee (
 );
 
 CREATE TABLE teacher (
-    employe_id INT AUTO_INCREMENT PRIMARY KEY,
+    employe_id INT SERIAL PRIMARY KEY,
     teacher_id INT,
     department_id INT,
     seniority VARCHAR(50),
@@ -40,12 +40,12 @@ CREATE TABLE teacher (
 );
 
 CREATE TABLE program (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE course (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     sigle VARCHAR(10),
     department_id INT,
@@ -61,7 +61,7 @@ CREATE TABLE academicYear (
 );
 
 CREATE TABLE session (
-    session_id INT AUTO_INCREMENT PRIMARY KEY,
+    session_id INT SERIAL PRIMARY KEY,
     year_id VARCHAR(10) NOT NULL,
     name VARCHAR(100) NOT NULL,
     start_date DATE NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE student (
 );
 
 CREATE TABLE Enrollment (
-    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
+    enrollment_id INT SERIAL PRIMARY KEY,
     admission_number INT NOT NULL,
     session_id INT NOT NULL,
     course_id INT NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE Enrollment (
 );
 
 CREATE TABLE evaluation (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     course_id INT NOT NULL,
     ponderation INT,
@@ -127,7 +127,7 @@ CREATE TABLE schedule (
 );
 
 CREATE TABLE mail (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     receiver_id INT NOT NULL,
     sender_id INT NOT NULL,
     subject VARCHAR(100),
@@ -139,7 +139,7 @@ CREATE TABLE mail (
 );
 
 CREATE TABLE address (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     address VARCHAR(200),
     city VARCHAR(100),
