@@ -1,0 +1,27 @@
+.button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-text-fill: #0072BA; /* Blue text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 6px 12px; /* Padding */
+    -fx-background-radius: 8px; /* Slight rounded corners */
+    -fx-border-radius: 8px; /* Slight rounded corners */
+    -fx-border-color: #0072BA; /* Border color same as text */
+    -fx-border-width: 1px; /* Border width */
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-transition-duration: 0.3s; /* Smooth transition duration */
+}
+
+/* Hover effect */
+.button:hover {
+    -fx-background-color: rgba(0, 114, 186, 0.1); /* Light blue background on hover */
+}
+
+.button:hover .icon {
+    -fx-opacity: 0; /* Masque l'image view sur hover */
+}
+
+/* Pressed effect */
+.button:pressed {
+    -fx-background-color: rgba(0, 114, 186, 0.2); /* Slightly darker blue background when pressed */
+}
