@@ -9,12 +9,10 @@ import lombok.Data;
 @Data
 public class Student {
     @Id
-    private Long userId;
+    private Long studentId;
 
     @ManyToOne
     private User user;
-
-    private int admissionNumber;
 
     @ManyToOne
     private Program program;

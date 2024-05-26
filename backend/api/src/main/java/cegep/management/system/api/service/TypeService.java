@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Type;
 import cegep.management.system.api.repo.TypeRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class TypeService {
@@ -34,6 +35,7 @@ public class TypeService {
         return typeRepository.save(type);
     }
 
+    @Transactional
     public Type updateType(Long id, Type typeDetails) {
         return typeRepository.findById(id)
                 .map(type -> {

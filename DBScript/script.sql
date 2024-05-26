@@ -88,11 +88,11 @@ CREATE TABLE session (
 
 -- Create 'student' table to store student details
 CREATE TABLE student (
-    user_id INT NOT NULL,              -- Foreign key referencing 'user', not null
-    admission_number INT PRIMARY KEY,  -- Primary key for admission number
-    program_id INT NOT NULL,           -- Foreign key referencing 'program', not null
-    session_id INT NOT NULL,           -- Foreign key referencing 'session', not null
-    Field VARCHAR(100),                -- Field of study
+    user_id INT NOT NULL, -- Foreign key referencing 'user', not null
+    program_id INT NOT NULL, -- Foreign key referencing 'program', not null
+    session_id INT NOT NULL, -- Foreign key referencing 'session', not null
+    Field VARCHAR(100), -- Field of study
+    PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE, -- Delete student if user is deleted
     FOREIGN KEY (program_id) REFERENCES program(id),
     FOREIGN KEY (session_id) REFERENCES session(session_id)
@@ -101,12 +101,12 @@ CREATE TABLE student (
 -- Create 'enrollment' table to store enrollment details for students
 CREATE TABLE enrollment (
     enrollment_id SERIAL PRIMARY KEY,   -- Primary key with auto-increment
-    admission_number INT NOT NULL,      -- Foreign key referencing 'student', not null
+    user_id INT NOT NULL,      -- Foreign key referencing 'student', not null
     session_id INT NOT NULL,            -- Foreign key referencing 'session', not null
     course_id INT NOT NULL,             -- Foreign key referencing 'course', not null
     end_date DATE,                      -- End date of the enrollment
     grade VARCHAR(2),                   -- Grade received
-    FOREIGN KEY (admission_number) REFERENCES student(admission_number) ON DELETE CASCADE, -- Delete enrollment if student is deleted
+    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete enrollment if student is deleted
     FOREIGN KEY (session_id) REFERENCES session(session_id),
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
@@ -123,30 +123,30 @@ CREATE TABLE evaluation (
 
 -- Create 'student_evaluation' table to store student evaluation results
 CREATE TABLE student_evaluation (
-    admission_number INT NOT NULL,     -- Foreign key referencing 'student', not null
+    user_id INT NOT NULL,     -- Foreign key referencing 'student', not null
     evaluation_id INT NOT NULL,        -- Foreign key referencing 'evaluation', not null
-    PRIMARY KEY (admission_number, evaluation_id), -- Composite primary key
-    FOREIGN KEY (admission_number) REFERENCES student(admission_number) ON DELETE CASCADE, -- Delete record if student is deleted
+    PRIMARY KEY (user_id, evaluation_id), -- Composite primary key
+    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete record if student is deleted
     FOREIGN KEY (evaluation_id) REFERENCES evaluation(id)
 );
 
 -- Create 'student_course' table to link students with their courses
 CREATE TABLE student_course (
-    admission_number INT NOT NULL,     -- Foreign key referencing 'student', not null
+    user_id INT NOT NULL,     -- Foreign key referencing 'student', not null
     course_id INT NOT NULL,            -- Foreign key referencing 'course', not null
-    PRIMARY KEY (admission_number, course_id), -- Composite primary key
-    FOREIGN KEY (admission_number) REFERENCES student(admission_number) ON DELETE CASCADE, -- Delete record if student is deleted
+    PRIMARY KEY (user_id, course_id), -- Composite primary key
+    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete record if student is deleted
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
 
 -- Create 'schedule' table to store class schedules for students
 CREATE TABLE schedule (
     id SERIAL PRIMARY KEY,               -- Primary key with auto-increment
-    student_admission_number INT NOT NULL,-- Foreign key referencing 'student', not null
+    user_id INT NOT NULL,-- Foreign key referencing 'student', not null
     course_id INT NOT NULL,              -- Foreign key referencing 'course', not null
     hour_start VARCHAR(5),               -- Class start time
     hour_end VARCHAR(5),                 -- Class end time
-    FOREIGN KEY (student_admission_number) REFERENCES student(admission_number) ON DELETE CASCADE, -- Delete record if student is deleted
+    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE, -- Delete record if user is deleted
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
 

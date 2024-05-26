@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.User;
 import cegep.management.system.api.repo.UserRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -39,6 +40,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
+    @Transactional
     public User updateUser(Long id, User userDetails) {
         return this.userRepository.findById(id)
                 .map(user -> {

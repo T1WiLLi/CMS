@@ -1,18 +1,31 @@
 package cegep.management.system.api.model;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentCourse {
-    @Id
-    @ManyToOne
-    private int admissionNumber;
 
-    @Id
+    @EmbeddedId
+    private StudentCourseId id;
+
     @ManyToOne
-    private int courseId;
+    @MapsId("studentId")
+    private Student student;
+
+    @ManyToOne
+    @MapsId("courseId")
+    private Course course;
+
+    public StudentCourse(Long studentId, Long courseId) {
+        this.id = new StudentCourseId(studentId, courseId);
+    }
 }
