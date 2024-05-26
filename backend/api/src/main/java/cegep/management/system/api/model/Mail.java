@@ -17,10 +17,10 @@ public class Mail {
     private Long id;
 
     @ManyToOne
-    private User receiver;
+    private Person receiver;
 
     @ManyToOne
-    private User sender;
+    private Person sender;
 
     private String subject;
     private String content;

@@ -28,9 +28,9 @@ CREATE TABLE program (
 );
 
 -- Create 'user' table to store user information
-CREATE TABLE user (
+CREATE TABLE person (
     id SERIAL PRIMARY KEY,         -- Primary key with auto-increment
-    name VARCHAR(100) NOT NULL,    -- First name, not null
+    first_name VARCHAR(100) NOT NULL,    -- First name, not null
     last_name VARCHAR(100) NOT NULL, -- Last name, not null
     email VARCHAR(100) NOT NULL,   -- Email, not null
     phone VARCHAR(15),             -- Phone number
@@ -41,19 +41,19 @@ CREATE TABLE user (
 -- Create 'employee' table to store employee details linked to users
 CREATE TABLE employee (
     employee_id SERIAL PRIMARY KEY, -- Primary key with auto-increment
-    user_id INT NOT NULL,           -- Foreign key referencing 'user', not null
-    seniority VARCHAR(50),          -- Seniority level
-    type_id INT,                    -- Foreign key referencing 'type'
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE, -- Delete employee if user is deleted
+    person_id INT NOT NULL UNIQUE, -- Foreign key referencing 'person', not null, unique
+    seniority VARCHAR(50), -- Seniority level
+    type_id INT, -- Foreign key referencing 'type'
+    FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE, -- Delete employee if person is deleted
     FOREIGN KEY (type_id) REFERENCES type(id)
 );
 
 -- Create 'teacher' table to store teacher-specific information
 CREATE TABLE teacher (
-    employee_id SERIAL PRIMARY KEY, -- Primary key with auto-increment
-    teacher_id INT,                 -- Teacher ID
-    department_id INT,              -- Foreign key referencing 'department'
-    seniority VARCHAR(50),          -- Seniority level
+    teacher_id SERIAL PRIMARY KEY, -- Primary key with auto-increment
+    employee_id INT NOT NULL UNIQUE, -- Foreign key referencing 'employee', not null, unique
+    department_id INT, -- Foreign key referencing 'department'
+    seniority VARCHAR(50), -- Seniority level
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE, -- Delete teacher if employee is deleted
     FOREIGN KEY (department_id) REFERENCES department(id)
 );
@@ -66,7 +66,7 @@ CREATE TABLE course (
     department_id INT,               -- Foreign key referencing 'department'
     teacher_id INT,                  -- Foreign key referencing 'teacher'
     FOREIGN KEY (department_id) REFERENCES department(id),
-    FOREIGN KEY (teacher_id) REFERENCES teacher(employee_id)
+    FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
 );
 
 -- Create 'academic_year' table to store academic year details
@@ -88,12 +88,12 @@ CREATE TABLE session (
 
 -- Create 'student' table to store student details
 CREATE TABLE student (
-    user_id INT NOT NULL, -- Foreign key referencing 'user', not null
+    person_id INT NOT NULL UNIQUE, -- Foreign key referencing 'person', not null, unique
     program_id INT NOT NULL, -- Foreign key referencing 'program', not null
     session_id INT NOT NULL, -- Foreign key referencing 'session', not null
-    Field VARCHAR(100), -- Field of study
-    PRIMARY KEY (user_id),
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE, -- Delete student if user is deleted
+    field VARCHAR(100), -- Field of study
+    PRIMARY KEY (person_id),
+    FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE, -- Delete student if person is deleted
     FOREIGN KEY (program_id) REFERENCES program(id),
     FOREIGN KEY (session_id) REFERENCES session(session_id)
 );
@@ -101,12 +101,12 @@ CREATE TABLE student (
 -- Create 'enrollment' table to store enrollment details for students
 CREATE TABLE enrollment (
     enrollment_id SERIAL PRIMARY KEY,   -- Primary key with auto-increment
-    user_id INT NOT NULL,      -- Foreign key referencing 'student', not null
+    person_id INT NOT NULL,             -- Foreign key referencing 'student', not null
     session_id INT NOT NULL,            -- Foreign key referencing 'session', not null
     course_id INT NOT NULL,             -- Foreign key referencing 'course', not null
     end_date DATE,                      -- End date of the enrollment
     grade VARCHAR(2),                   -- Grade received
-    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete enrollment if student is deleted
+    FOREIGN KEY (person_id) REFERENCES student(person_id) ON DELETE CASCADE, -- Delete enrollment if student is deleted
     FOREIGN KEY (session_id) REFERENCES session(session_id),
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
@@ -123,55 +123,55 @@ CREATE TABLE evaluation (
 
 -- Create 'student_evaluation' table to store student evaluation results
 CREATE TABLE student_evaluation (
-    user_id INT NOT NULL,     -- Foreign key referencing 'student', not null
+    person_id INT NOT NULL,            -- Foreign key referencing 'student', not null
     evaluation_id INT NOT NULL,        -- Foreign key referencing 'evaluation', not null
-    PRIMARY KEY (user_id, evaluation_id), -- Composite primary key
-    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete record if student is deleted
+    PRIMARY KEY (person_id, evaluation_id), -- Composite primary key
+    FOREIGN KEY (person_id) REFERENCES student(person_id) ON DELETE CASCADE, -- Delete record if student is deleted
     FOREIGN KEY (evaluation_id) REFERENCES evaluation(id)
 );
 
 -- Create 'student_course' table to link students with their courses
 CREATE TABLE student_course (
-    user_id INT NOT NULL,     -- Foreign key referencing 'student', not null
+    person_id INT NOT NULL,            -- Foreign key referencing 'student', not null
     course_id INT NOT NULL,            -- Foreign key referencing 'course', not null
-    PRIMARY KEY (user_id, course_id), -- Composite primary key
-    FOREIGN KEY (user_id) REFERENCES student(user_id) ON DELETE CASCADE, -- Delete record if student is deleted
+    PRIMARY KEY (person_id, course_id),-- Composite primary key
+    FOREIGN KEY (person_id) REFERENCES student(person_id) ON DELETE CASCADE, -- Delete record if student is deleted
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
 
 -- Create 'schedule' table to store class schedules for students
 CREATE TABLE schedule (
-    id SERIAL PRIMARY KEY,               -- Primary key with auto-increment
-    user_id INT NOT NULL,-- Foreign key referencing 'student', not null
-    course_id INT NOT NULL,              -- Foreign key referencing 'course', not null
-    hour_start VARCHAR(5),               -- Class start time
-    hour_end VARCHAR(5),                 -- Class end time
-    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE, -- Delete record if user is deleted
+    id SERIAL PRIMARY KEY,           -- Primary key with auto-increment
+    person_id INT NOT NULL,          -- Foreign key referencing 'student', not null
+    course_id INT NOT NULL,          -- Foreign key referencing 'course', not null
+    hour_start VARCHAR(5),           -- Class start time
+    hour_end VARCHAR(5),             -- Class end time
+    FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE, -- Delete record if person is deleted
     FOREIGN KEY (course_id) REFERENCES course(id)
 );
 
 -- Create 'mail' table to store emails between users
 CREATE TABLE mail (
-    id SERIAL PRIMARY KEY,        -- Primary key with auto-increment
-    receiver_id INT NOT NULL,     -- Foreign key referencing 'user', not null
-    sender_id INT NOT NULL,       -- Foreign key referencing 'user', not null
-    subject VARCHAR(100),         -- Email subject
-    content TEXT,                 -- Email content
-    date DATE,                    -- Date of the email
-    read BOOLEAN,                 -- Read status
-    FOREIGN KEY (receiver_id) REFERENCES user(id) ON DELETE CASCADE, -- Delete mail if receiver is deleted
-    FOREIGN KEY (sender_id) REFERENCES user(id) ON DELETE CASCADE    -- Delete mail if sender is deleted
+    id SERIAL PRIMARY KEY,           -- Primary key with auto-increment
+    receiver_id INT NOT NULL,        -- Foreign key referencing 'user', not null
+    sender_id INT NOT NULL,          -- Foreign key referencing 'user', not null
+    subject VARCHAR(100),            -- Email subject
+    content TEXT,                    -- Email content
+    date DATE,                       -- Date of the email
+    read BOOLEAN,                    -- Read status
+    FOREIGN KEY (receiver_id) REFERENCES person(id) ON DELETE CASCADE, -- Delete mail if receiver is deleted
+    FOREIGN KEY (sender_id) REFERENCES person(id) ON DELETE CASCADE    -- Delete mail if sender is deleted
 );
 
 -- Create 'address' table to store addresses linked to users
 CREATE TABLE address (
-    id SERIAL PRIMARY KEY,        -- Primary key with auto-increment
-    user_id INT NOT NULL,         -- Foreign key referencing 'user', not null
-    address VARCHAR(200),         -- Street address
-    city VARCHAR(100),            -- City
-    province VARCHAR(50),         -- Province
-    postal_code VARCHAR(10),      -- Postal code
-    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE -- Delete address if user is deleted
+    id SERIAL PRIMARY KEY,           -- Primary key with auto-increment
+    person_id INT NOT NULL,            -- Foreign key referencing 'user', not null
+    address VARCHAR(200),            -- Street address
+    city VARCHAR(100),               -- City
+    province VARCHAR(50),            -- Province
+    postal_code VARCHAR(10),         -- Postal code
+    FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE -- Delete address if user is deleted
 );
 
 -- Function to delete emails that are marked as read and older than 30 days

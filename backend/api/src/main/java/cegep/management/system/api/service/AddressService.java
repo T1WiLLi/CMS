@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Address;
-import cegep.management.system.api.model.User;
+import cegep.management.system.api.model.Person;
 import cegep.management.system.api.repo.AddressRepository;
 import jakarta.transaction.Transactional;
 
@@ -28,7 +28,7 @@ public class AddressService {
         return this.addressRepository.findById(id);
     }
 
-    public List<Address> getAddressesByUser(User user) {
+    public List<Address> getAddressesByUser(Person user) {
         return this.addressRepository.findByUser(user);
     }
 

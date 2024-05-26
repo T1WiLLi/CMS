@@ -15,7 +15,7 @@ public class Address {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Person user;
 
     private String address;
     private String city;

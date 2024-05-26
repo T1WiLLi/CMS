@@ -7,45 +7,45 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cegep.management.system.api.error.ResourceNotFoundException;
-import cegep.management.system.api.model.User;
-import cegep.management.system.api.repo.UserRepository;
+import cegep.management.system.api.model.Person;
+import cegep.management.system.api.repo.PersonRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class UserService {
+public class PersonService {
 
-    private final UserRepository userRepository;
+    private final PersonRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public PersonService(PersonRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> getAllUsers() {
+    public List<Person> getAllUsers() {
         return this.userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<Person> getUserById(Long id) {
         return this.userRepository.findById(id);
     }
 
-    public Optional<User> getUserByFirstNameAndLastName(String firstName, String lastName) {
+    public Optional<Person> getUserByFirstNameAndLastName(String firstName, String lastName) {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    public User createUser(User user) {
+    public Person createUser(Person user) {
         String hashedPassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         return this.userRepository.save(user);
     }
 
     @Transactional
-    public User updateUser(Long id, User userDetails) {
+    public Person updateUser(Long id, Person userDetails) {
         return this.userRepository.findById(id)
                 .map(user -> {
                     String hashedPassword = passwordEncoder.encode(userDetails.getPassword());
-                    user.setName(userDetails.getName());
+                    user.setFirstName(userDetails.getFirstName());
                     user.setLastName(userDetails.getLastName());
                     user.setEmail(userDetails.getEmail());
                     user.setPhone(userDetails.getPhone());
@@ -65,7 +65,7 @@ public class UserService {
     }
 
     public boolean authenticateUser(String email, String plainTextPassword) {
-        User user = userRepository.findByEmail(email)
+        Person user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with email " + email));
         return passwordEncoder.matches(plainTextPassword, user.getPassword());
     }
