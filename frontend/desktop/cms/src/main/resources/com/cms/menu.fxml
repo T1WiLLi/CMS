@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="988.0" prefWidth="1424.0" stylesheets="@assets/css/menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="988.0" prefWidth="1424.0" stylesheets="@assets/css/menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="1070.0" layoutX="-40.0" layoutY="-32.0" stroke="BLACK" strokeType="INSIDE" width="1549.0" />
-      <Button layoutX="148.0" layoutY="96.0" mnemonicParsing="false" onAction="#test" prefHeight="288.0" prefWidth="279.0" stylesheets="@assets/css/menu.css" text="Button">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="1070.0" layoutX="-60.0" layoutY="-30.0" stroke="BLACK" strokeType="INSIDE" width="1549.0" />
+      <Button layoutX="148.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" stylesheets="@assets/css/menu.css" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -19,7 +19,7 @@
       <Button layoutX="1001.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Button" />
       <Button layoutX="331.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Button" />
       <Button layoutX="795.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Button" />
-      <ImageView fx:id="icon1" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="247.0" layoutY="199.0" onMouseDragEntered="#handleMouseEnter" onMouseDragExited="#handleMouseExit" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="icon1" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="247.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/icon/calendar.png" />
          </image>
