@@ -1,6 +1,9 @@
 package cegep.management.system.api.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,16 +18,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", unique = true) // Ensuring unique constraint
     private Person person;
 
     @ManyToOne
+    @JoinColumn(name = "program_id")
     private Program program;
 
     @ManyToOne
+    @JoinColumn(name = "session_id")
     private Session session;
 
     private String field;

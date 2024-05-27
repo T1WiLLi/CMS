@@ -1,5 +1,6 @@
 package cegep.management.system.api.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Teacher {
 
     private int teacherId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", unique = true) // Ensuring unique constraint
     private Employee employee;
 

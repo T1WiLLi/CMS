@@ -21,4 +21,11 @@ public class StudentDTO {
     private Long programId;
     private Long sessionId;
     private String field;
+
+    @Override
+    public String toString() {
+        return "StudentDTO [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email +
+                ", phone=" + phone + ", programId=" + programId + ", sessionId=" + sessionId +
+                ", field=" + field + "]";
+    }
 }

@@ -71,7 +71,7 @@ CREATE TABLE course (
 
 -- Create 'academic_year' table to store academic year details
 CREATE TABLE academic_year (
-    year_id VARCHAR(10) PRIMARY KEY, -- Primary key for academic year ID
+    year_id SERIAL PRIMARY KEY,      -- Primary key for academic year ID
     start_date DATE NOT NULL,        -- Start date of the academic year, not null
     end_date DATE NOT NULL           -- End date of the academic year, not null
 );
@@ -79,7 +79,7 @@ CREATE TABLE academic_year (
 -- Create 'session' table to store session details within academic years
 CREATE TABLE session (
     session_id SERIAL PRIMARY KEY,    -- Primary key with auto-increment
-    year_id VARCHAR(10) NOT NULL,     -- Foreign key referencing 'academic_year', not null
+    year_id INT NOT NULL,               -- Foreign key referencing 'academic_year', not null
     name VARCHAR(100) NOT NULL,       -- Session name, not null
     start_date DATE NOT NULL,         -- Start date of the session, not null
     end_date DATE NOT NULL,           -- End date of the session, not null

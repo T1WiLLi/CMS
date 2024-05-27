@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import cegep.management.system.api.model.AcademicYear;
 
 @Repository
-public interface AcademicYearRepository extends JpaRepository<AcademicYear, String> {
+public interface AcademicYearRepository extends JpaRepository<AcademicYear, Long> {
     Optional<AcademicYear> findByStartDateAndEndDate(Date startDate, Date endDate);
 }

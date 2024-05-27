@@ -23,7 +23,7 @@ public class AcademicYearService {
         return this.academicYearRepository.findAll();
     }
 
-    public Optional<AcademicYear> getAcademicYearById(String id) {
+    public Optional<AcademicYear> getAcademicYearById(Long id) {
         return this.academicYearRepository.findById(id);
     }
 
@@ -36,7 +36,7 @@ public class AcademicYearService {
     }
 
     @Transactional
-    public AcademicYear updateAcademicYear(String id, AcademicYear academicYearDetails) {
+    public AcademicYear updateAcademicYear(Long id, AcademicYear academicYearDetails) {
         return this.academicYearRepository.findById(id)
                 .map(academicYear -> {
                     academicYear.setStartDate(academicYearDetails.getStartDate());
@@ -46,7 +46,7 @@ public class AcademicYearService {
                 .orElseThrow(() -> new ResourceNotFoundException("AcademicYear not found with id " + id));
     }
 
-    public void deleteAcademicYear(String id) {
+    public void deleteAcademicYear(Long id) {
         if (this.academicYearRepository.existsById(id)) {
             this.academicYearRepository.deleteById(id);
         } else {

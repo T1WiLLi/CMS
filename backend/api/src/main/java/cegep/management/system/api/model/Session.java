@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Session {
     private Long sessionId;
 
     @ManyToOne
+    @JoinColumn(name = "year_id")
     private AcademicYear academicYear;
 
     private String name;

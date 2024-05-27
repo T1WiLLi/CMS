@@ -20,7 +20,6 @@ import cegep.management.system.api.model.StudentEvaluation;
 import cegep.management.system.api.model.StudentEvaluationId;
 import cegep.management.system.api.repo.CourseRepository;
 import cegep.management.system.api.repo.EvaluationRepository;
-import cegep.management.system.api.repo.PersonRepository;
 import cegep.management.system.api.repo.ProgramRepository;
 import cegep.management.system.api.repo.SessionRepository;
 import cegep.management.system.api.repo.StudentCourseRepository;
@@ -37,7 +36,7 @@ public class StudentService {
     private final StudentCourseRepository studentCourseRepository;
     private final EvaluationRepository evaluationRepository;
     private final StudentEvaluationRepository studentEvaluationRepository;
-    private final PersonRepository personRepository;
+    private final PersonService personService;
     private final ProgramRepository programRepository;
     private final SessionRepository sessionRepository;
 
@@ -46,14 +45,14 @@ public class StudentService {
             StudentCourseRepository studentCourseRepository,
             EvaluationRepository evaluationRepository,
             StudentEvaluationRepository studentEvaluationRepository,
-            PersonRepository personRepository, ProgramRepository programRepository,
+            PersonService personService, ProgramRepository programRepository,
             SessionRepository sessionRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.studentCourseRepository = studentCourseRepository;
         this.evaluationRepository = evaluationRepository;
         this.studentEvaluationRepository = studentEvaluationRepository;
-        this.personRepository = personRepository;
+        this.personService = personService;
         this.programRepository = programRepository;
         this.sessionRepository = sessionRepository;
     }
@@ -71,22 +70,25 @@ public class StudentService {
         Person person = new Person(studentDTO.getFirstName(), studentDTO.getLastName(), studentDTO.getEmail(),
                 studentDTO.getPhone(), studentDTO.getPassword(), studentDTO.getDateOfBirth());
 
-        Person savedPerson = this.personRepository.save(person);
+        if (this.personService.createUser(person) != null) {
+            Program program = this.programRepository.findById(studentDTO.getProgramId())
+                    .orElseThrow(
+                            () -> new EntityNotFoundException(
+                                    "Program not found with ID: " + studentDTO.getProgramId()));
 
-        Program program = this.programRepository.findById(studentDTO.getProgramId())
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Program not found with ID: " + studentDTO.getProgramId()));
+            Session session = this.sessionRepository.findById(1L)
+                    .orElseThrow(
+                            () -> new EntityNotFoundException(
+                                    "Session not found with ID: " + studentDTO.getSessionId()));
+            Student student = new Student();
+            student.setPerson(person);
+            student.setProgram(program);
+            student.setSession(session);
+            student.setField(studentDTO.getField());
 
-        Session session = this.sessionRepository.findById(studentDTO.getSessionId())
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Session not found with ID: " + studentDTO.getSessionId()));
-        Student student = new Student();
-        student.setPerson(savedPerson);
-        student.setProgram(program);
-        student.setSession(session);
-        student.setField(studentDTO.getField());
-
-        return this.studentRepository.save(student);
+            return this.studentRepository.save(student);
+        }
+        return null;
     }
 
     @Transactional
