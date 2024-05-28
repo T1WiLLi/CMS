@@ -1,25 +1,21 @@
 Font: Roboto
 
 Primary Blue: 
-#0072BA 
-This deep blue shade can be used for headers, primary buttons, and key interface elements, providing a strong visual anchor.
+#132043
+Main background dark blue
 
 Secondary Blue: 
-#4D94DB 
-suitable for backgrounds, secondary buttons, and accents. It offers contrast while maintaining harmony with the primary blue.
+#39387B 
+secondary background, can also be a text color
 
-Accent Blue: 
-#1E88E5 
-call-to-action buttons, links, or interactive elements, helping them stand out against the background.
+text Blue: 
+#6AE9F1 
+Main text color
 
-Neutral Blue: 
-#6F7D8C 
-borders, dividers, and less prominent UI elements, adding depth and structure to the design.
+blue: 
+#6463A8 
+A secondary blue 
 
 White: 
-#FFFFFF 
-primary background color, lending a clean, spacious feel to your interface.
+#FEFEFE
 
-Highlight Blue: 
-#B3E5FC 
-hover effects, selected items, or subtle highlights, providing visual feedback and interactivity.
