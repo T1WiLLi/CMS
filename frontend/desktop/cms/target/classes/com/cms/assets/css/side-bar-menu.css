@@ -67,17 +67,60 @@
 .mailButton {
     -fx-background-color: #39387b; /* Background color */
     -fx-text-fill: #6AE9F1; /* Text color */
-    -fx-padding: 10px 85px 10px 10px; /* Initial padding */
+    -fx-padding: 10px 83px 10px 10px; /* Initial padding */
     -fx-font-size: 18px;
     -fx-font-weight: bold; /* Make text bold */
-    animation: moveTextLeft 0.3s forwards; /* Transition duration */
 }
 
 /* Hover state for Mail button */
 .mailButton:hover {
     -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
     -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
-    -fx-padding: 10px 75px 10px 20px; /* Adjusted padding on hover */
 }
+
+.SettingsButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 51px 10px 10px; /* Initial padding */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+    animation: moveTextLeft 0.3s forwards; /* Transition duration */
+}
+
+/* Hover state for Mail button */
+.SettingsButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+}
+
+.profileButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 64px 10px 10px; /* Initial padding */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+}
+
+/* Hover state for Mail button */
+.profileButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+}
+
+.logoutButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 60px 10px 10px; /* Initial padding */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+
+}
+
+/* Hover state for Mail button */
+.logoutButton:hover {
+    -fx-background-color: #D71919; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #6AE9F1; /* Same as normal to keep it unchanged */
+}
+
 
 

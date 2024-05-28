@@ -78,12 +78,12 @@ public class MenuController {
 
     private Image lightMailIcon;
     private Image darkMailIcon;
-/* 
+
     private Image lightSettingsIcon;
     private Image darkSettingsIcon;
 
     private Image lightProfileIcon;
-    private Image darkProfileIcon;*/
+    private Image darkProfileIcon;
 
     @FXML
     public void initialize() {
@@ -137,6 +137,26 @@ public class MenuController {
 
         mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon ));
         mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightMailIcon));
+
+        // Settings Icon
+
+        lightSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_light.png"));
+        darkSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_dark.png"));
+
+        mailIcon.setImage(lightSettingsIcon);
+
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkSettingsIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightSettingsIcon));
+
+        // Profile Icon
+
+        lightProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_light.png"));
+        darkProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_dark.png"));
+
+        mailIcon.setImage(lightProfileIcon);
+
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkProfileIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightProfileIcon));
 
     }
 
