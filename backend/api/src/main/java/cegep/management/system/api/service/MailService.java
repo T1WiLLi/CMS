@@ -5,7 +5,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Mail;
+import cegep.management.system.api.model.Person;
 import cegep.management.system.api.repo.MailRepository;
+import cegep.management.system.api.repo.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +17,11 @@ import java.util.Optional;
 public class MailService {
 
     private final MailRepository mailRepository;
+    private final PersonRepository personRepository;
 
-    public MailService(MailRepository mailRepository) {
+    public MailService(MailRepository mailRepository, PersonRepository personRepository) {
         this.mailRepository = mailRepository;
+        this.personRepository = personRepository;
     }
 
     public List<Mail> getAllMails() {
@@ -25,6 +30,18 @@ public class MailService {
 
     public Optional<Mail> getMailById(Long mailId) {
         return mailRepository.findById(mailId);
+    }
+
+    public List<Mail> getMailsBySenderId(Long senderId) {
+        Person sender = personRepository.findById(senderId)
+                .orElseThrow(() -> new EntityNotFoundException("Sender not found with ID: " + senderId));
+        return mailRepository.findBySender(sender);
+    }
+
+    public List<Mail> getMailsByReceiverId(Long receiverId) {
+        Person receiver = personRepository.findById(receiverId)
+                .orElseThrow(() -> new EntityNotFoundException("Receiver not found with ID: " + receiverId));
+        return mailRepository.findByReceiver(receiver);
     }
 
     public Mail createMail(Mail mail) {
