@@ -1,6 +1,6 @@
 package cegep.management.system.api.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,9 +28,10 @@ public class Person {
     private String email;
     private String phone;
     private String password;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Person(String firstName, String lastName, String email, String phone, String password, Date dateOfBirth) {
+    public Person(String firstName, String lastName, String email, String phone, String password,
+            LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

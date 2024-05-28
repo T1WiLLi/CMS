@@ -52,13 +52,15 @@ public class SessionService {
 
     public Session getOrCreateSessionForCurrentDate() {
         LocalDate currentDate = LocalDate.now();
-        Optional<Session> existingSession = sessionRepository.findSessionByDate(currentDate);
+        AcademicYear currentAcademicYear = academicYearService.getOrCreateNextAcademicYear(currentDate);
+
+        Optional<Session> existingSession = sessionRepository.findSessionByDateAndAcademicYear(currentDate,
+                currentAcademicYear);
 
         if (existingSession.isPresent()) {
             return existingSession.get();
         } else {
-            AcademicYear academicYear = academicYearService.getOrCreateNextAcademicYear(currentDate);
-            return createSessionForAcademicYear(academicYear, currentDate);
+            return createSessionForAcademicYear(currentAcademicYear, currentDate);
         }
     }
 
@@ -68,10 +70,23 @@ public class SessionService {
         LocalDate session2StartDate = LocalDate.of(session1EndDate.getYear() + 1, 1, 18);
         LocalDate session2EndDate = LocalDate.of(session2StartDate.getYear(), 5, 26);
 
+        Optional<Session> existingAutumnSession = sessionRepository.findByAcademicYearAndNameAndStartDateAndEndDate(
+                academicYear, "Autumn", session1StartDate, session1EndDate);
+        Optional<Session> existingWinterSession = sessionRepository.findByAcademicYearAndNameAndStartDateAndEndDate(
+                academicYear, "Winter", session2StartDate, session2EndDate);
+
         if (currentDate.isBefore(session1EndDate)) {
-            return sessionRepository.save(new Session(academicYear, "Autumn", session1StartDate, session1EndDate));
+            if (existingAutumnSession.isPresent()) {
+                return existingAutumnSession.get();
+            } else {
+                return sessionRepository.save(new Session(academicYear, "Autumn", session1StartDate, session1EndDate));
+            }
         } else {
-            return sessionRepository.save(new Session(academicYear, "Winter", session2StartDate, session2EndDate));
+            if (existingWinterSession.isPresent()) {
+                return existingWinterSession.get();
+            } else {
+                return sessionRepository.save(new Session(academicYear, "Winter", session2StartDate, session2EndDate));
+            }
         }
     }
 }
