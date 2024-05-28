@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class CmsApp extends Application {
@@ -18,6 +19,7 @@ public class CmsApp extends Application {
             stage.show();
             stage.setTitle("CMS");
             stage.setResizable(false);
+            stage.getIcons().add(new Image(getClass().getResource("/com/cms/assets/icon/icon.png").toExternalForm()));
         } catch (Exception e) {
             e.printStackTrace();
         }

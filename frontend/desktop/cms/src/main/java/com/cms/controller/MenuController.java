@@ -1,84 +1,171 @@
 package com.cms.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.collections.ObservableList;
+import java.io.IOException;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
+
+import javafx.stage.Stage;
 
 public class MenuController {
 
-    @FXML
-    Pane pane;
-
-    private Button[] buttons;
-
-    private ImageView[] icons;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
-    private void initialize() {
-        ObservableList<Node> children = pane.getChildren();
-        List<Button> buttonList = new ArrayList<>();
-        List<ImageView> iconList = new ArrayList<>();
+    private Button evaluationButton;
 
-        for (Node node : children) {
-            if (node instanceof Button) {
-                buttonList.add((Button) node);
-            } else if (node instanceof ImageView) {
-                iconList.add((ImageView) node);
-            }
-        }
+    @FXML
+    private Button homeButton;
 
-        buttons = buttonList.toArray(new Button[0]);
-        icons = iconList.toArray(new ImageView[0]);
+    @FXML
+    private Button classesButton;
 
-        boundEventListenerToButtonElement();
+    @FXML
+    private Button studentButton;
+
+    @FXML
+    private Button mailButton;
+
+    @FXML
+    private Button SettingsButton;
+
+    @FXML
+    private Button ProfileButton;
+
+    @FXML
+    private ImageView starIcon;
+
+    @FXML
+    private ImageView homeIcon;
+
+    @FXML
+    private ImageView classesIcon;
+
+    @FXML
+    private ImageView studentIcon;
+
+    @FXML
+    private ImageView mailIcon;
+
+    @FXML
+    private ImageView SettingsIcon;
+
+    @FXML
+    private ImageView ProfileIcon;
+
+    private Image lightStarIcon;
+    private Image darkStarIcon;
+
+    private Image lightHomeIcon;
+    private Image darkHomeIcon;
+
+    private Image lightStudentIcon;
+    private Image darkStudentIcon;
+
+    private Image lightClassesIcon;
+    private Image darkClassesIcon;
+
+    private Image lightMailIcon;
+    private Image darkMailIcon;
+
+    private Image lightSettingsIcon;
+    private Image darkSettingsIcon;
+
+    private Image lightProfileIcon;
+    private Image darkProfileIcon;
+
+    @FXML
+    public void initialize() {
+
+        // Star Icon
+
+        lightStarIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/star_light.png"));
+        darkStarIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/star_dark.png"));
+
+        starIcon.setImage(lightStarIcon);
+
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->  starIcon.setImage(darkStarIcon));
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->  starIcon.setImage(lightStarIcon));
+
+        // Home Icon
+
+        lightHomeIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/home_light.png"));
+        darkHomeIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/home.png"));
+
+        homeIcon.setImage(lightHomeIcon);
+
+        homeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> homeIcon.setImage(darkHomeIcon ));
+        homeButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> homeIcon.setImage(lightHomeIcon));
+
+        // Classes Icon
+
+        lightClassesIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/book_light.png"));
+        darkClassesIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/book_dark.png"));
+
+        classesIcon.setImage(lightClassesIcon);
+
+        classesButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> classesIcon.setImage(darkClassesIcon ));
+        classesButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> classesIcon.setImage(lightClassesIcon));
+
+        // Students Icon
+
+        lightStudentIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/graduation_light.png"));
+        darkStudentIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/graduation_dark.png"));
+
+        studentIcon.setImage(lightStudentIcon);
+
+        studentButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> studentIcon.setImage(darkStudentIcon ));
+        studentButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> studentIcon.setImage(lightStudentIcon));
+
+        // Mail Icon
+
+        lightMailIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/envelope_light.png"));
+        darkMailIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/envelope _dark.png"));
+
+        mailIcon.setImage(lightMailIcon);
+
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightMailIcon));
+
+        // Settings Icon
+
+        lightSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_light.png"));
+        darkSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_dark.png"));
+
+        mailIcon.setImage(lightSettingsIcon);
+
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkSettingsIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightSettingsIcon));
+
+        // Profile Icon
+
+        lightProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_light.png"));
+        darkProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_dark.png"));
+
+        mailIcon.setImage(lightProfileIcon);
+
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkProfileIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightProfileIcon));
+
     }
 
-    private void boundEventListenerToButtonElement() {
-        for (Button button : buttons) {
-            button.setOnMouseEntered(e -> {
-                ImageView associatedIcon = findAssociatedIcon(button);
-                if (associatedIcon != null) {
-                    associatedIcon.setVisible(false);
-                }
-            });
+    public void switchToSchedule(ActionEvent event) throws IOException {
 
-            button.setOnMouseExited(event -> {
-                ImageView associatedIcon = findAssociatedIcon(button);
-                if (associatedIcon != null) {
-                    associatedIcon.setVisible(true);
-                }
-            });
-        }
-    }
-
-    private ImageView findAssociatedIcon(Button button) {
-        ImageView closestIcon = null;
-        double closestDistance = Double.MAX_VALUE;
-
-        double buttonCenterX = button.getLayoutX() + button.getWidth() / 2;
-        double buttonCenterY = button.getLayoutY() + button.getHeight() / 2;
-
-        for (ImageView icon : icons) {
-            double iconCenterX = icon.getLayoutX() + icon.getFitWidth() / 2;
-            double iconCenterY = icon.getLayoutY() + icon.getFitHeight() / 2;
-
-            if (iconCenterX >= button.getLayoutX() && iconCenterX <= button.getLayoutX() + button.getWidth()
-                    && iconCenterY >= button.getLayoutY() && iconCenterY <= button.getLayoutY() + button.getHeight()) {
-                double distance = Math
-                        .sqrt(Math.pow(iconCenterX - buttonCenterX, 2) + Math.pow(iconCenterY - buttonCenterY, 2));
-
-                if (distance < closestDistance) {
-                    closestIcon = icon;
-                    closestDistance = distance;
-                }
-            }
-        }
-        return closestIcon;
+        root = FXMLLoader.load(getClass().getResource("/com/cms/schedule.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
