@@ -39,6 +39,7 @@ public class StudentService {
     private final PersonService personService;
     private final ProgramRepository programRepository;
     private final SessionRepository sessionRepository;
+    private final SessionService sessionService;
 
     public StudentService(StudentRepository studentRepository,
             CourseRepository courseRepository,
@@ -46,7 +47,7 @@ public class StudentService {
             EvaluationRepository evaluationRepository,
             StudentEvaluationRepository studentEvaluationRepository,
             PersonService personService, ProgramRepository programRepository,
-            SessionRepository sessionRepository) {
+            SessionRepository sessionRepository, SessionService sessionService) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.studentCourseRepository = studentCourseRepository;
@@ -55,6 +56,7 @@ public class StudentService {
         this.personService = personService;
         this.programRepository = programRepository;
         this.sessionRepository = sessionRepository;
+        this.sessionService = sessionService;
     }
 
     // Basic CRUD op for the studentList
@@ -76,10 +78,16 @@ public class StudentService {
                             () -> new EntityNotFoundException(
                                     "Program not found with ID: " + studentDTO.getProgramId()));
 
-            Session session = this.sessionRepository.findById(1L)
-                    .orElseThrow(
-                            () -> new EntityNotFoundException(
-                                    "Session not found with ID: " + studentDTO.getSessionId()));
+            Session session;
+            if (studentDTO.getSessionId() == null) {
+                session = this.sessionService.getOrCreateSessionForCurrentDate();
+            } else {
+                session = this.sessionRepository.findById(studentDTO.getSessionId())
+                        .orElseThrow(
+                                () -> new EntityNotFoundException(
+                                        "Session not found with ID: " + studentDTO.getSessionId()));
+            }
+
             Student student = new Student();
             student.setPerson(person);
             student.setProgram(program);
@@ -89,6 +97,7 @@ public class StudentService {
             return this.studentRepository.save(student);
         }
         return null;
+
     }
 
     @Transactional
@@ -99,6 +108,18 @@ public class StudentService {
             student.setField(updatedStudent.getField());
             return studentRepository.save(student);
         }).orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+    }
+
+    @Transactional
+    public Student updateStudentProgram(Long studentId, Long programId) {
+        return studentRepository.findById(studentId)
+                .map(student -> {
+                    Program program = programRepository.findById(programId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Program not found"));
+                    student.setProgram(program);
+                    return studentRepository.save(student);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
     }
 
     public void deleteStudent(Long studentId) {

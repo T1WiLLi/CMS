@@ -37,6 +37,7 @@ public class PersonService {
     public Person createUser(Person user) {
         String hashedPassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+        // TODO: format user phone number to match ((x)-xxx-xxx-xxxx)
         return this.userRepository.save(user);
     }
 

@@ -42,6 +42,12 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
+    @PutMapping("/{studentId}/program/{programId}")
+    public ResponseEntity<?> updateStudentProgram(@PathVariable Long studentId, @PathVariable Long programId) {
+        Student updatedStudent = studentService.updateStudentProgram(studentId, programId);
+        return ResponseEntity.ok(updatedStudent);
+    }
+
     @DeleteMapping("/{studentId}")
     public ResponseEntity<?> deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);

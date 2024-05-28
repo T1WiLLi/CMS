@@ -4,9 +4,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cegep.management.system.api.error.ResourceNotFoundException;
+import cegep.management.system.api.model.AcademicYear;
 import cegep.management.system.api.model.Session;
 import cegep.management.system.api.repo.SessionRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +16,11 @@ import java.util.Optional;
 public class SessionService {
 
     private final SessionRepository sessionRepository;
+    private final AcademicYearService academicYearService;
 
-    public SessionService(SessionRepository sessionRepository) {
+    public SessionService(SessionRepository sessionRepository, AcademicYearService academicYearService) {
         this.sessionRepository = sessionRepository;
+        this.academicYearService = academicYearService;
     }
 
     public List<Session> getAllSessions() {
@@ -44,5 +48,30 @@ public class SessionService {
 
     public void deleteSession(Long sessionId) {
         sessionRepository.deleteById(sessionId);
+    }
+
+    public Session getOrCreateSessionForCurrentDate() {
+        LocalDate currentDate = LocalDate.now();
+        Optional<Session> existingSession = sessionRepository.findSessionByDate(currentDate);
+
+        if (existingSession.isPresent()) {
+            return existingSession.get();
+        } else {
+            AcademicYear academicYear = academicYearService.getOrCreateNextAcademicYear(currentDate);
+            return createSessionForAcademicYear(academicYear, currentDate);
+        }
+    }
+
+    private Session createSessionForAcademicYear(AcademicYear academicYear, LocalDate currentDate) {
+        LocalDate session1StartDate = academicYear.getStartDate();
+        LocalDate session1EndDate = LocalDate.of(session1StartDate.getYear(), 12, 22);
+        LocalDate session2StartDate = LocalDate.of(session1EndDate.getYear() + 1, 1, 18);
+        LocalDate session2EndDate = LocalDate.of(session2StartDate.getYear(), 5, 26);
+
+        if (currentDate.isBefore(session1EndDate)) {
+            return sessionRepository.save(new Session(academicYear, "Autumn", session1StartDate, session1EndDate));
+        } else {
+            return sessionRepository.save(new Session(academicYear, "Winter", session2StartDate, session2EndDate));
+        }
     }
 }
