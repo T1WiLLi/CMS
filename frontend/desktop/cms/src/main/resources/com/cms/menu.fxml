@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="988.0" prefWidth="1424.0" stylesheets="@assets/css/menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="1070.0" layoutX="-60.0" layoutY="-30.0" stroke="BLACK" strokeType="INSIDE" width="1549.0" />
+      <Button layoutX="148.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" stylesheets="@assets/css/menu.css" text="Schedule">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="575.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Mail" />
+      <Button layoutX="1001.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Students" />
+      <Button layoutX="331.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Homework" />
+      <Button layoutX="795.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Evaluation" />
+      <ImageView fx:id="icon1" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="247.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icon/schedule.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="icon11" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="671.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icon/email%20(1).png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="icon111" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="1100.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icon/bachelor.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</Pane>
