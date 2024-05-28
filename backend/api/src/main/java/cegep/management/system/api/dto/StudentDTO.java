@@ -1,6 +1,6 @@
 package cegep.management.system.api.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class StudentDTO {
     private String email;
     private String phone;
     private String password;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Long programId;
     private Long sessionId;
     private String field;

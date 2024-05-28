@@ -2,6 +2,8 @@ package cegep.management.system.api.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class PersonService {
 
     private final PersonRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+
+    private static final String PHONE_NUMBER_PATTERN = "(\\d{3})(\\d{3})(\\d{4})";
 
     public PersonService(PersonRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -35,10 +39,30 @@ public class PersonService {
     }
 
     public Person createUser(Person user) {
-        String hashedPassword = this.passwordEncoder.encode(user.getPassword());
+        String formattedPhoneNumber = formatPhoneNumber(user.getPhone());
+        user.setPhone(formattedPhoneNumber);
+
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("User with the same email already exists");
+        }
+
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        // TODO: format user phone number to match ((x)-xxx-xxx-xxxx)
-        return this.userRepository.save(user);
+
+        return userRepository.save(user);
+    }
+
+    private String formatPhoneNumber(String phoneNumber) {
+        phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
+
+        Pattern pattern = Pattern.compile(PHONE_NUMBER_PATTERN);
+        Matcher matcher = pattern.matcher(phoneNumber);
+
+        if (matcher.matches()) {
+            return "(" + matcher.group(1) + ")-" + matcher.group(2) + "-" + matcher.group(3);
+        } else {
+            return phoneNumber;
+        }
     }
 
     @Transactional
