@@ -1,27 +1,83 @@
-.button {
-    -fx-background-color: transparent; /* Transparent background */
-    -fx-text-fill: #0072BA; /* Blue text color */
-    -fx-font-size: 14px; /* Font size */
-    -fx-font-weight: bold; /* Font weight */
-    -fx-padding: 6px 12px; /* Padding */
-    -fx-background-radius: 8px; /* Slight rounded corners */
-    -fx-border-radius: 8px; /* Slight rounded corners */
-    -fx-border-color: #0072BA; /* Border color same as text */
-    -fx-border-width: 1px; /* Border width */
-    -fx-cursor: hand; /* Cursor on hover */
-    -fx-transition-duration: 0.3s; /* Smooth transition duration */
+/* Normal state for Home button */
+@keyframes moveTextLeft {
+    0% {
+        padding-left: 85px; /* Initial padding-left */
+    }
+    100% {
+        padding-left: 20px; /* Final padding-left */
+    }
 }
 
-/* Hover effect */
-.button:hover {
-    -fx-background-color: rgba(0, 114, 186, 0.1); /* Light blue background on hover */
+.homeButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 65px 10px 10px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
 }
 
-.button:hover .icon {
-    -fx-opacity: 0; /* Masque l'image view sur hover */
+/* Hover state for Home button */
+.homeButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
 }
 
-/* Pressed effect */
-.button:pressed {
-    -fx-background-color: rgba(0, 114, 186, 0.2); /* Slightly darker blue background when pressed */
+.evaluationButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 30px 10px 10px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
 }
+
+/* Hover state for Home button */
+.evaluationButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+}
+
+.classesButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 60px 10px 10px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+}
+
+/* Hover state for Home button */
+.classesButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+}
+
+.studentButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 46px 10px 10px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+}
+
+/* Hover state for Home button */
+.studentButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+}
+
+.mailButton {
+    -fx-background-color: #39387b; /* Background color */
+    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-padding: 10px 85px 10px 10px; /* Initial padding */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+    animation: moveTextLeft 0.3s forwards; /* Transition duration */
+}
+
+/* Hover state for Mail button */
+.mailButton:hover {
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
+    -fx-padding: 10px 75px 10px 20px; /* Adjusted padding on hover */
+}
+
+

@@ -1,47 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="988.0" prefWidth="1424.0" stylesheets="@assets/css/menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024" prefWidth="1440" stylesheets="@assets/css/menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="1070.0" layoutX="-60.0" layoutY="-30.0" stroke="BLACK" strokeType="INSIDE" width="1549.0" />
-      <Button layoutX="148.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" stylesheets="@assets/css/menu.css" text="Schedule">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="575.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Mail" />
-      <Button layoutX="1001.0" layoutY="96.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Students" />
-      <Button layoutX="331.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Homework" />
-      <Button layoutX="795.0" layoutY="530.0" mnemonicParsing="false" prefHeight="288.0" prefWidth="279.0" text="Evaluation" />
-      <ImageView fx:id="icon1" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="247.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/icon/schedule.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="icon11" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="671.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/icon/email%20(1).png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="icon111" disable="true" fitHeight="82.0" fitWidth="87.0" layoutX="1100.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/icon/bachelor.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1058.0" layoutX="-6.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1521.0" />
+      <Pane prefHeight="1074.0" prefWidth="262.0" stylesheets="@assets/css/menu.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1051.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="265.0" />
+            <Button fx:id="homeButton" layoutX="-3.0" layoutY="250.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="homeButton" stylesheets="@assets/css/menu.css" text="Home">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="evaluationButton" layoutX="-3.0" layoutY="315.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="evaluationButton" stylesheets="@assets/css/menu.css" text="Evaluation">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="classesButton" layoutX="-1.0" layoutY="380.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="classesButton" stylesheets="@assets/css/menu.css" text="Classes">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="studentButton" layoutX="-1.0" layoutY="445.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="studentButton" stylesheets="@assets/css/menu.css" text="Students">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="mailButton" layoutX="-1.0" layoutY="510.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="mailButton" stylesheets="@assets/css/menu.css" text="Mail">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6463a8" height="1086.0" layoutX="259.0" layoutY="-23.0" stroke="#6463a8" strokeType="INSIDE" width="5.0" />
+            <ImageView fx:id="starIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icon/star_light.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icon/home_light.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="classesIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icon/book_light.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="studentIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icon/graduation-cap.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mailIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="532.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icon/envelope_light.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </Pane>
