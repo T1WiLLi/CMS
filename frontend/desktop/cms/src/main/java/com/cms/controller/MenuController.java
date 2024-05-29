@@ -1,6 +1,10 @@
 package com.cms.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
-
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MenuController {
 
@@ -38,10 +42,10 @@ public class MenuController {
     private Button mailButton;
 
     @FXML
-    private Button SettingsButton;
+    private Button settingsButton;
 
     @FXML
-    private Button ProfileButton;
+    private Button profileButton;
 
     @FXML
     private ImageView starIcon;
@@ -59,10 +63,10 @@ public class MenuController {
     private ImageView mailIcon;
 
     @FXML
-    private ImageView SettingsIcon;
+    private ImageView settingsIcon;
 
     @FXML
-    private ImageView ProfileIcon;
+    private ImageView profileIcon;
 
     private Image lightStarIcon;
     private Image darkStarIcon;
@@ -84,6 +88,8 @@ public class MenuController {
 
     private Image lightProfileIcon;
     private Image darkProfileIcon;
+
+    private Map<Button, Double> originalPositions = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -135,7 +141,7 @@ public class MenuController {
 
         mailIcon.setImage(lightMailIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon));
         mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightMailIcon));
 
         // Settings Icon
@@ -143,21 +149,61 @@ public class MenuController {
         lightSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_light.png"));
         darkSettingsIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/settings_dark.png"));
 
-        mailIcon.setImage(lightSettingsIcon);
+        settingsIcon.setImage(lightSettingsIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkSettingsIcon ));
-        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightSettingsIcon));
+
+        settingsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+            settingsIcon.setImage(darkSettingsIcon);
+            rotationAnimation();
+        });
+        settingsButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> settingsIcon.setImage(lightSettingsIcon));
 
         // Profile Icon
 
         lightProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_light.png"));
         darkProfileIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/user_dark.png"));
 
-        mailIcon.setImage(lightProfileIcon);
+        profileIcon.setImage(lightProfileIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkProfileIcon ));
-        mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightProfileIcon));
+        profileButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> profileIcon.setImage(darkProfileIcon ));
+        profileButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> profileIcon.setImage(lightProfileIcon));
 
+        setupButtonAnimation(evaluationButton);
+        setupButtonAnimation(homeButton);
+        setupButtonAnimation(classesButton);
+        setupButtonAnimation(studentButton);
+        setupButtonAnimation(mailButton);
+        setupButtonAnimation(settingsButton);
+        setupButtonAnimation(profileButton);
+
+    }
+
+    private void setupButtonAnimation(Button button) {
+        originalPositions.put(button, button.getTranslateX());
+
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(200), button.lookup(".text"));
+            tt.setByX(20);
+            tt.play();
+        });
+
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(200), button.lookup(".text"));
+            tt.setToX(originalPositions.get(button));
+            tt.play();
+        });
+    }
+
+    public void rotationAnimation(){
+        RotateTransition rt = new RotateTransition();
+
+        rt.setNode(settingsIcon);
+        rt.setDuration(Duration.millis(1000));
+        rt.setCycleCount(1);
+        rt.setInterpolator(Interpolator.LINEAR);
+        rt.setAxis(Rotate.Z_AXIS); // Use Z_AXIS for 2D rotation
+        rt.setByAngle(360); // Set the angle for one full rotation
+        rt.play();
     }
 
     public void switchToSchedule(ActionEvent event) throws IOException {
