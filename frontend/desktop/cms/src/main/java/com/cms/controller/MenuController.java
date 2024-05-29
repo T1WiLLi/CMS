@@ -1,6 +1,9 @@
 package com.cms.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
 
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MenuController {
 
@@ -38,10 +41,10 @@ public class MenuController {
     private Button mailButton;
 
     @FXML
-    private Button SettingsButton;
+    private Button settingsButton;
 
     @FXML
-    private Button ProfileButton;
+    private Button profileButton;
 
     @FXML
     private ImageView starIcon;
@@ -85,6 +88,9 @@ public class MenuController {
     private Image lightProfileIcon;
     private Image darkProfileIcon;
 
+    // Map to store the original X positions of button texts
+    private Map<Button, Double> originalPositions = new HashMap<>();
+
     @FXML
     public void initialize() {
 
@@ -95,8 +101,8 @@ public class MenuController {
 
         starIcon.setImage(lightStarIcon);
 
-        evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->  starIcon.setImage(darkStarIcon));
-        evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->  starIcon.setImage(lightStarIcon));
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> starIcon.setImage(darkStarIcon));
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> starIcon.setImage(lightStarIcon));
 
         // Home Icon
 
@@ -105,7 +111,7 @@ public class MenuController {
 
         homeIcon.setImage(lightHomeIcon);
 
-        homeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> homeIcon.setImage(darkHomeIcon ));
+        homeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> homeIcon.setImage(darkHomeIcon));
         homeButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> homeIcon.setImage(lightHomeIcon));
 
         // Classes Icon
@@ -115,7 +121,7 @@ public class MenuController {
 
         classesIcon.setImage(lightClassesIcon);
 
-        classesButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> classesIcon.setImage(darkClassesIcon ));
+        classesButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> classesIcon.setImage(darkClassesIcon));
         classesButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> classesIcon.setImage(lightClassesIcon));
 
         // Students Icon
@@ -125,7 +131,7 @@ public class MenuController {
 
         studentIcon.setImage(lightStudentIcon);
 
-        studentButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> studentIcon.setImage(darkStudentIcon ));
+        studentButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> studentIcon.setImage(darkStudentIcon));
         studentButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> studentIcon.setImage(lightStudentIcon));
 
         // Mail Icon
@@ -135,7 +141,7 @@ public class MenuController {
 
         mailIcon.setImage(lightMailIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkMailIcon));
         mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightMailIcon));
 
         // Settings Icon
@@ -145,7 +151,7 @@ public class MenuController {
 
         mailIcon.setImage(lightSettingsIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkSettingsIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkSettingsIcon));
         mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightSettingsIcon));
 
         // Profile Icon
@@ -155,15 +161,38 @@ public class MenuController {
 
         mailIcon.setImage(lightProfileIcon);
 
-        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkProfileIcon ));
+        mailButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> mailIcon.setImage(darkProfileIcon));
         mailButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> mailIcon.setImage(lightProfileIcon));
 
+        setupButtonAnimation(evaluationButton);
+        setupButtonAnimation(homeButton);
+        setupButtonAnimation(classesButton);
+        setupButtonAnimation(studentButton);
+        setupButtonAnimation(mailButton);
+        setupButtonAnimation(settingsButton);
+        setupButtonAnimation(profileButton);
+    }
+
+    private void setupButtonAnimation(Button button) {
+        originalPositions.put(button, button.getTranslateX());
+
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(200), button.lookup(".text"));
+            tt.setByX(20);
+            tt.play();
+        });
+
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
+            TranslateTransition tt = new TranslateTransition(Duration.millis(200), button.lookup(".text"));
+            tt.setToX(originalPositions.get(button));
+            tt.play();
+        });
     }
 
     public void switchToSchedule(ActionEvent event) throws IOException {
 
         root = FXMLLoader.load(getClass().getResource("/com/cms/schedule.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1058.0" layoutX="-6.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1521.0" />
       <Pane prefHeight="1024.0" prefWidth="262.0" stylesheets="@assets/css/menu.css">
