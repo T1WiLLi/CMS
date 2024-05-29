@@ -1,5 +1,6 @@
 package cegep.management.system.api.model;
 
+import cegep.management.system.api.interfaces.UserDetails;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Teacher {
+public class Teacher implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
