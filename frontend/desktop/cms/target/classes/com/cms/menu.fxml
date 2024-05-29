@@ -8,9 +8,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+<Pane fx:id="pane" maxHeight="1024.0" maxWidth="1440.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1058.0" layoutX="-6.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1521.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1047.0" layoutX="-6.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1451.0" />
       <Pane prefHeight="1024.0" prefWidth="262.0" stylesheets="@assets/css/menu.css">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1047.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="265.0" />
@@ -62,7 +62,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="-1.0" layoutY="959.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="logoutButton" stylesheets="@assets/css/menu.css" text="Logout">
+            <Button fx:id="logoutButton" layoutX="-1.0" layoutY="959.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="logoutButton" stylesheets="@assets/css/menu.css" text="Logout">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -78,7 +78,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6463a8" height="1086.0" layoutX="259.0" layoutY="-23.0" stroke="#6463a8" strokeType="INSIDE" width="5.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6463a8" height="1059.0" layoutX="259.0" layoutY="-23.0" stroke="#6463a8" strokeType="INSIDE" width="5.0" />
             <ImageView fx:id="starIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/icon/star_light.png" />
@@ -115,11 +115,15 @@
                   <Image url="@assets/icon/user_light.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="mailIcon111" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="981.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@assets/icon/exit.png" />
-               </image>
-            </ImageView>
+            <Pane fx:id="logoutIconPane" layoutX="39.0" layoutY="982.0" prefHeight="42.0" prefWidth="21.0">
+               <children>
+                  <ImageView fx:id="logoutIcon" fitHeight="21.0" fitWidth="21.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icon/exit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
