@@ -18,7 +18,7 @@ import cegep.management.system.api.model.Mail;
 import cegep.management.system.api.service.MailService;
 
 @RestController
-@RequestMapping("/api/v1/mail")
+@RequestMapping("mail")
 public class MailController {
 
     @Autowired
