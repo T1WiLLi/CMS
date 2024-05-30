@@ -11,10 +11,10 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1051.0" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1047.0" layoutX="-11.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1451.0" />
-      <Pane prefHeight="1024.0" prefWidth="264.0" stylesheets="@assets/css/menu.css">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1071.0" layoutX="-11.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1451.0" />
+      <Pane prefHeight="1051.0" prefWidth="264.0" stylesheets="@assets/css/menu.css">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1047.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="262.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1063.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="262.0" />
             <Button fx:id="homeButton" layoutX="-3.0" layoutY="250.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="homeButton" stylesheets="@assets/css/menu.css" text="Home">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
@@ -131,7 +131,7 @@
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="232.0" layoutX="315.0" layoutY="100.0" stroke="#39387b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeType="OUTSIDE" width="1110.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="335.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="553.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="759.0" layoutY="138.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="770.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="987.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="1204.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
       <Label layoutX="314.0" layoutY="-8.0" prefHeight="65.0" prefWidth="327.0" text="Home" textFill="#6ae9f1">
@@ -146,6 +146,6 @@
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="766.0" layoutY="790.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="974.0" layoutY="788.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="1182.0" layoutY="788.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
-      <Button layoutX="360.0" layoutY="953.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="165.0" text="Button" />
+      <Button layoutX="372.0" layoutY="917.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="165.0" text="Button" />
    </children>
 </Pane>
