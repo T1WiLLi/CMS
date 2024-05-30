@@ -5,18 +5,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Evaluation;
+import cegep.management.system.api.model.Student;
+import cegep.management.system.api.model.StudentEvaluation;
+import cegep.management.system.api.model.StudentEvaluationId;
 import cegep.management.system.api.repo.EvaluationRepository;
+import cegep.management.system.api.repo.StudentEvaluationRepository;
+import cegep.management.system.api.repo.StudentRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EvaluationService {
 
     private final EvaluationRepository evaluationRepository;
+    private final StudentRepository studentRepository;
+    private final StudentEvaluationRepository studentEvaluationRepository;
 
-    public EvaluationService(EvaluationRepository evaluationRepository) {
+    public EvaluationService(EvaluationRepository evaluationRepository,
+            StudentRepository studentRepository,
+            StudentEvaluationRepository studentEvaluationRepository) {
         this.evaluationRepository = evaluationRepository;
+        this.studentRepository = studentRepository;
+        this.studentEvaluationRepository = studentEvaluationRepository;
     }
 
     public List<Evaluation> getAllEvaluations() {
@@ -44,5 +56,42 @@ public class EvaluationService {
 
     public void deleteEvaluation(Long evaluationId) {
         evaluationRepository.deleteById(evaluationId);
+    }
+
+    public List<Evaluation> getEvaluationsForStudent(Long studentId) {
+        List<StudentEvaluation> studentEvaluations = studentEvaluationRepository.findAllByIdStudentId(studentId);
+        return studentEvaluations.stream()
+                .map(se -> evaluationRepository.findById(se.getId().getEvaluationId()))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Student addEvaluationToStudent(Long studentId, Long evaluationId) {
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+        Optional<Evaluation> evaluationOpt = evaluationRepository.findById(evaluationId);
+
+        if (studentOpt.isPresent() && evaluationOpt.isPresent()) {
+            Student student = studentOpt.get();
+            Evaluation evaluation = evaluationOpt.get();
+            StudentEvaluation studentEvaluation = new StudentEvaluation(studentId, evaluationId);
+            studentEvaluation.setStudent(student);
+            studentEvaluation.setEvaluation(evaluation);
+            studentEvaluationRepository.save(studentEvaluation);
+            return student;
+        } else {
+            throw new ResourceNotFoundException("Student or Evaluation not found");
+        }
+    }
+
+    @Transactional
+    public void removeEvaluationFromStudent(Long studentId, Long evaluationId) {
+        StudentEvaluationId id = new StudentEvaluationId(studentId, evaluationId);
+        if (studentEvaluationRepository.existsById(id)) {
+            studentEvaluationRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("StudentEvaluation not found");
+        }
     }
 }

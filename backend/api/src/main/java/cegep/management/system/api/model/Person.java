@@ -2,6 +2,7 @@ package cegep.management.system.api.model;
 
 import java.time.LocalDate;
 
+import cegep.management.system.api.interfaces.UserDetails;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Person {
+public class Person implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -9,7 +9,7 @@ import cegep.management.system.api.model.Student;
 import cegep.management.system.api.service.StudentService;
 
 @RestController
-@RequestMapping("/api/v1/students")
+@RequestMapping("/students")
 public class StudentController {
 
     private final StudentService studentService;
