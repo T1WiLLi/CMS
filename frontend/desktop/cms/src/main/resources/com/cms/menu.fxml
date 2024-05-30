@@ -2,18 +2,19 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="1024.0" maxWidth="1440.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1051.0" prefWidth="1440" stylesheets="@assets/css/side-bar-menu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cms.controller.MenuController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1047.0" layoutX="-6.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" width="1451.0" />
-      <Pane prefHeight="1024.0" prefWidth="262.0" stylesheets="@assets/css/menu.css">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#132043" height="1047.0" layoutX="-11.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="1451.0" />
+      <Pane prefHeight="1024.0" prefWidth="264.0" stylesheets="@assets/css/menu.css">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1047.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="265.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#39387b" height="1047.0" layoutX="-3.0" layoutY="-5.0" stroke="#39387b" strokeType="INSIDE" width="262.0" />
             <Button fx:id="homeButton" layoutX="-3.0" layoutY="250.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" styleClass="homeButton" stylesheets="@assets/css/menu.css" text="Home">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
@@ -78,7 +79,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6463a8" height="1059.0" layoutX="259.0" layoutY="-23.0" stroke="#6463a8" strokeType="INSIDE" width="5.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6463a8" height="1086.0" layoutX="259.0" layoutY="-23.0" stroke="#6463a8" strokeType="INSIDE" width="5.0" />
             <ImageView fx:id="starIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/icon/star_light.png" />
@@ -86,7 +87,7 @@
             </ImageView>
             <ImageView fx:id="homeIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icon/home_light.png" />
+                  <Image url="@assets/icon/home.png" />
                </image>
             </ImageView>
             <ImageView fx:id="classesIcon" fitHeight="21.0" fitWidth="21.0" layoutX="39.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
@@ -115,9 +116,10 @@
                   <Image url="@assets/icon/user_light.png" />
                </image>
             </ImageView>
-            <Pane fx:id="logoutIconPane" layoutX="39.0" layoutY="982.0" prefHeight="42.0" prefWidth="21.0">
+            <Label layoutX="11.0" layoutY="6.0" prefHeight="17.0" prefWidth="128.0" text="CMS version 0.0.1" />
+            <Pane fx:id="logoutIconPane" layoutX="39.0" layoutY="984.0" prefHeight="40.0" prefWidth="21.0">
                <children>
-                  <ImageView fx:id="logoutIcon" fitHeight="21.0" fitWidth="21.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="mailIcon111" fitHeight="21.0" fitWidth="21.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@assets/icon/exit.png" />
                      </image>
@@ -126,5 +128,24 @@
             </Pane>
          </children>
       </Pane>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="232.0" layoutX="315.0" layoutY="100.0" stroke="#39387b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeType="OUTSIDE" width="1110.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="335.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="553.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="759.0" layoutY="138.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="987.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="200.0" layoutX="1204.0" layoutY="116.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="200.0" />
+      <Label layoutX="314.0" layoutY="-8.0" prefHeight="65.0" prefWidth="327.0" text="Home" textFill="#6ae9f1">
+         <font>
+            <Font name="System Bold" size="64.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="417.0" layoutX="314.0" layoutY="357.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="539.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fefefe" height="417.0" layoutX="887.0" layoutY="357.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="539.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="362.0" layoutY="789.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="569.0" layoutY="792.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="766.0" layoutY="790.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="974.0" layoutY="788.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#39387b" height="183.0" layoutX="1182.0" layoutY="788.0" stroke="#fefefe" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" width="185.0" />
+      <Button layoutX="360.0" layoutY="953.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="165.0" text="Button" />
    </children>
 </Pane>

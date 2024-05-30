@@ -18,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -36,9 +35,6 @@ public class MenuController {
 
     @FXML
     private Button evaluationButton;
-
-    @FXML
-    private Button homeButton;
 
     @FXML
     private Button classesButton;
@@ -82,9 +78,6 @@ public class MenuController {
     private Image lightStarIcon;
     private Image darkStarIcon;
 
-    private Image lightHomeIcon;
-    private Image darkHomeIcon;
-
     private Image lightStudentIcon;
     private Image darkStudentIcon;
 
@@ -114,16 +107,6 @@ public class MenuController {
 
         evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->  starIcon.setImage(darkStarIcon));
         evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->  starIcon.setImage(lightStarIcon));
-
-        // Home Icon
-
-        lightHomeIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/home_light.png"));
-        darkHomeIcon = new Image(getClass().getResourceAsStream("/com/cms/assets/icon/home.png"));
-
-        homeIcon.setImage(lightHomeIcon);
-
-        homeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> homeIcon.setImage(darkHomeIcon ));
-        homeButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> homeIcon.setImage(lightHomeIcon));
 
         // Classes Icon
 
@@ -177,7 +160,6 @@ public class MenuController {
         profileButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> profileIcon.setImage(lightProfileIcon));
 
         setupButtonAnimation(evaluationButton);
-        setupButtonAnimation(homeButton);
         setupButtonAnimation(classesButton);
         setupButtonAnimation(studentButton);
         setupButtonAnimation(mailButton);
