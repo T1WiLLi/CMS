@@ -18,7 +18,7 @@ import cegep.management.system.api.model.AcademicYear;
 import cegep.management.system.api.service.AcademicYearService;
 
 @RestController
-@RequestMapping("academicYears")
+@RequestMapping("/academicYears")
 public class AcademicYearController {
     @Autowired
     private AcademicYearService academicYearService;

@@ -11,7 +11,7 @@ import cegep.management.system.api.service.PersonService;
 import java.util.List;
 
 @RestController
-@RequestMapping("addresses")
+@RequestMapping("/addresses")
 public class AddressController {
 
     @Autowired

@@ -26,6 +26,10 @@ public class ScheduleService {
         return scheduleRepository.findById(scheduleId);
     }
 
+    public List<Schedule> getSchedulesByStudentId(Long studentId) {
+        return scheduleRepository.findByStudentId(studentId);
+    }
+
     public Schedule createSchedule(Schedule schedule) {
         return scheduleRepository.save(schedule);
     }
