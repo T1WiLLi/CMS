@@ -29,6 +29,13 @@ public class PersonController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Person> getUserByEmail(@PathVariable String email) {
+        Person user = userService.getUserByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+        return ResponseEntity.ok(user);
+    }
+
     @PostMapping
     public ResponseEntity<Person> createUser(@RequestBody Person user) {
         Person createdUser = userService.createUser(user);

@@ -2,14 +2,18 @@ package cegep.management.system.api.service;
 
 import org.springframework.stereotype.Service;
 
+import cegep.management.system.api.dto.CourseDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Course;
+import cegep.management.system.api.model.Department;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.model.StudentCourse;
 import cegep.management.system.api.model.StudentCourseId;
+import cegep.management.system.api.model.Teacher;
 import cegep.management.system.api.repo.CourseRepository;
 import cegep.management.system.api.repo.StudentCourseRepository;
 import cegep.management.system.api.repo.StudentRepository;
+import cegep.management.system.api.repo.TeacherRepository;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -22,12 +26,17 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
     private final StudentCourseRepository studentCourseRepository;
+    private final TeacherRepository teacherRepository;
+    private final DepartmentService departmentService;
 
     public CourseService(CourseRepository courseRepository, StudentRepository studentRepository,
-            StudentCourseRepository studentCourseRepository) {
+            StudentCourseRepository studentCourseRepository, DepartmentService departmentService,
+            TeacherRepository teacherRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.studentCourseRepository = studentCourseRepository;
+        this.teacherRepository = teacherRepository;
+        this.departmentService = departmentService;
     }
 
     public List<Course> getAllCourses() {
@@ -38,8 +47,13 @@ public class CourseService {
         return this.courseRepository.findById(id);
     }
 
-    public Course createCourse(Course course) {
-        return this.courseRepository.save(course);
+    public Course createCourse(CourseDTO courseDTO) {
+        Teacher teacher = teacherRepository.findById(courseDTO.getTeacherId()).orElseThrow(
+                () -> new RuntimeException("Can't find a teacher with the id: " + courseDTO.getTeacherId()));
+        Department department = departmentService.getDepartmentById(courseDTO.getDepartmentId()).orElseThrow(
+                () -> new RuntimeException("Can't find a department with the id: " + courseDTO.getDepartmentId()));
+        Course course = new Course(courseDTO.getName(), courseDTO.getSigle(), department, teacher);
+        return courseRepository.save(course);
     }
 
     @Transactional

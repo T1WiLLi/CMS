@@ -38,6 +38,10 @@ public class PersonService {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
+    public Optional<Person> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     public Person createUser(Person user) {
         String formattedPhoneNumber = formatPhoneNumber(user.getPhone());
         user.setPhone(formattedPhoneNumber);

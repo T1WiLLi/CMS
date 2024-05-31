@@ -5,17 +5,25 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import cegep.management.system.api.dto.EmployeeDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Employee;
+import cegep.management.system.api.model.Person;
+import cegep.management.system.api.model.Type;
 import cegep.management.system.api.repo.EmployeeRepository;
 import jakarta.transaction.Transactional;
 
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final PersonService personService;
+    private final TypeService typeService;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, PersonService personService,
+            TypeService typeService) {
         this.employeeRepository = employeeRepository;
+        this.personService = personService;
+        this.typeService = typeService;
     }
 
     public List<Employee> getAllEmployees() {
@@ -26,8 +34,14 @@ public class EmployeeService {
         return employeeRepository.findById(employeeId);
     }
 
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public Employee createEmployee(EmployeeDTO employeeDTO) {
+        Type type = typeService.getTypeById(employeeDTO.getTypeId())
+                .orElseThrow(() -> new RuntimeException("Can't find type with id: " + employeeDTO.getTypeId()));
+        Person person = personService.getUserById(employeeDTO.getPersonId()).orElse(personService.createUser(new Person(
+                employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getEmail(), employeeDTO.getPhone(),
+                employeeDTO.getPassword(), employeeDTO.getDateOfBirth())));
+
+        return employeeRepository.save(new Employee(person, employeeDTO.getSeniority(), type));
     }
 
     @Transactional

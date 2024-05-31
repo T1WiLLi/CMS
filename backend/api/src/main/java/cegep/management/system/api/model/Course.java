@@ -19,9 +19,17 @@ public class Course {
     private String sigle;
 
     @ManyToOne
+    @JoinColumn(name = "department_id")
     private Department department;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    public Course(String name, String sigle, Department department, Teacher teacher) {
+        this.name = name;
+        this.sigle = sigle;
+        this.department = department;
+        this.teacher = teacher;
+    }
 }

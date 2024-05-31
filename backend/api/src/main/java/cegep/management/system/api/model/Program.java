@@ -18,4 +18,9 @@ public class Program {
 
     @ManyToOne
     private Department department;
+
+    public Program(String name, Department department) {
+        this.name = name;
+        this.department = department;
+    }
 }

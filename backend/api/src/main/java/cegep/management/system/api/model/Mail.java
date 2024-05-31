@@ -25,5 +25,13 @@ public class Mail {
     private String subject;
     private String content;
     private Date date;
-    private boolean read;
+    private boolean read = false;
+
+    public Mail(Person receiver, Person sender, String subject, String content, Date date) {
+        this.receiver = receiver;
+        this.sender = sender;
+        this.subject = subject;
+        this.content = content;
+        this.date = date;
+    }
 }

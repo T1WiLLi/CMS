@@ -1,6 +1,5 @@
 package cegep.management.system.api.controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +29,6 @@ public class SessionController {
         return sessionService.getSessionById(sessionId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public ResponseEntity<Session> createSession(@RequestBody Session session) {
-        Session createdSession = sessionService.createSession(session);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdSession);
     }
 
     @PutMapping("/{sessionId}")

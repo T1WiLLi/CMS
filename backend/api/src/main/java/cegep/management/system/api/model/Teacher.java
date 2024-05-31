@@ -18,8 +18,6 @@ public class Teacher implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
 
-    private int teacherId;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", unique = true) // Ensuring unique constraint
     private Employee employee;
@@ -27,5 +25,8 @@ public class Teacher implements UserDetails {
     @ManyToOne
     private Department department;
 
-    private String seniority;
+    public Teacher(Employee employee, Department department) {
+        this.employee = employee;
+        this.department = department;
+    }
 }

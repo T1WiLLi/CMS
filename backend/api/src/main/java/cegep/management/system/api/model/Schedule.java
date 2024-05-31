@@ -22,4 +22,11 @@ public class Schedule {
 
     private String hourStart;
     private String hourEnd;
+
+    public Schedule(Student student, Course course, String hourStart, String hourEnd) {
+        this.student = student;
+        this.course = course;
+        this.hourStart = hourStart;
+        this.hourEnd = hourEnd;
+    }
 }

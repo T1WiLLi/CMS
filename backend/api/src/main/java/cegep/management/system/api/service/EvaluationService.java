@@ -3,7 +3,9 @@ package cegep.management.system.api.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cegep.management.system.api.dto.EvaluationDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
+import cegep.management.system.api.model.Course;
 import cegep.management.system.api.model.Evaluation;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.model.StudentEvaluation;
@@ -22,13 +24,15 @@ public class EvaluationService {
     private final EvaluationRepository evaluationRepository;
     private final StudentRepository studentRepository;
     private final StudentEvaluationRepository studentEvaluationRepository;
+    private final CourseService courseService;
 
     public EvaluationService(EvaluationRepository evaluationRepository,
             StudentRepository studentRepository,
-            StudentEvaluationRepository studentEvaluationRepository) {
+            StudentEvaluationRepository studentEvaluationRepository, CourseService courseService) {
         this.evaluationRepository = evaluationRepository;
         this.studentRepository = studentRepository;
         this.studentEvaluationRepository = studentEvaluationRepository;
+        this.courseService = courseService;
     }
 
     public List<Evaluation> getAllEvaluations() {
@@ -39,8 +43,11 @@ public class EvaluationService {
         return evaluationRepository.findById(evaluationId);
     }
 
-    public Evaluation createEvaluation(Evaluation evaluation) {
-        return evaluationRepository.save(evaluation);
+    public Evaluation createEvaluation(EvaluationDTO evaluationDTO) {
+        Course course = courseService.getCourseById(evaluationDTO.getCourseId())
+                .orElseThrow(() -> new RuntimeException("Can't find a course with id: " + evaluationDTO.getCourseId()));
+        return evaluationRepository.save(new Evaluation(evaluationDTO.getName(), course, evaluationDTO.getPonderation(),
+                evaluationDTO.getDenominator()));
     }
 
     @Transactional

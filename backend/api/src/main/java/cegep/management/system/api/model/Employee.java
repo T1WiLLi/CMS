@@ -34,4 +34,10 @@ public class Employee implements UserDetails {
 
     @ManyToOne
     private Type type;
+
+    public Employee(Person person, String seniority, Type type) {
+        this.person = person;
+        this.seniority = seniority;
+        this.type = type;
+    }
 }

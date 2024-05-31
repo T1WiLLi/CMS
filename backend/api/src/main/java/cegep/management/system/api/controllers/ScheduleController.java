@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.ScheduleDTO;
 import cegep.management.system.api.model.Schedule;
 import cegep.management.system.api.service.ScheduleService;
 
@@ -39,8 +40,8 @@ public class ScheduleController {
     }
 
     @PostMapping
-    public ResponseEntity<Schedule> createSchedule(@RequestBody Schedule schedule) {
-        Schedule createdSchedule = scheduleService.createSchedule(schedule);
+    public ResponseEntity<Schedule> createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
+        Schedule createdSchedule = scheduleService.createSchedule(scheduleDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdSchedule);
     }
 

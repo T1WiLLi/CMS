@@ -1,5 +1,6 @@
 package cegep.management.system.api.controllers;
 
+import cegep.management.system.api.dto.CourseDTO;
 import cegep.management.system.api.model.Course;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.service.CourseService;
@@ -34,8 +35,8 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<Course> createCourse(@RequestBody Course course) {
-        Course createdCourse = courseService.createCourse(course);
+    public ResponseEntity<Course> createCourse(@RequestBody CourseDTO courseDTO) {
+        Course createdCourse = courseService.createCourse(courseDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCourse);
     }
 

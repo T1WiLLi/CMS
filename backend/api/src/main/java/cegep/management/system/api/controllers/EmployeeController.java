@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.EmployeeDTO;
 import cegep.management.system.api.model.Employee;
 import cegep.management.system.api.service.EmployeeService;
 
@@ -33,8 +34,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        Employee createdEmployee = employeeService.createEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        Employee createdEmployee = employeeService.createEmployee(employeeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdEmployee);
     }
 

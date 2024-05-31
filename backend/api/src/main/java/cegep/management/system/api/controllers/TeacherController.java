@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.TeacherDTO;
 import cegep.management.system.api.model.Course;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.model.Teacher;
@@ -47,8 +48,8 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
-        Teacher createdTeacher = teacherService.createTeacher(teacher);
+    public ResponseEntity<Teacher> createTeacher(@RequestBody TeacherDTO teacherDTO) {
+        Teacher createdTeacher = teacherService.createTeacher(teacherDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacher);
     }
 

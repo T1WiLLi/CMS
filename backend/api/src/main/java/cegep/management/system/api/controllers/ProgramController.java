@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.ProgramDTO;
 import cegep.management.system.api.model.Program;
 import cegep.management.system.api.service.ProgramService;
 
@@ -33,8 +34,8 @@ public class ProgramController {
     }
 
     @PostMapping
-    public ResponseEntity<Program> createProgram(@RequestBody Program program) {
-        Program createdProgram = programService.createProgram(program);
+    public ResponseEntity<Program> createProgram(@RequestBody ProgramDTO programDTO) {
+        Program createdProgram = programService.createProgram(programDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProgram);
     }
 

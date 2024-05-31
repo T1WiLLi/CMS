@@ -21,4 +21,11 @@ public class Evaluation {
 
     private int ponderation;
     private int denominator;
+
+    public Evaluation(String name, Course course, int ponderation, int denominator) {
+        this.name = name;
+        this.course = course;
+        this.ponderation = ponderation;
+        this.denominator = denominator;
+    }
 }

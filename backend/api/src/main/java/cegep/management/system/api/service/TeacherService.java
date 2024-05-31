@@ -3,8 +3,12 @@ package cegep.management.system.api.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cegep.management.system.api.dto.EmployeeDTO;
+import cegep.management.system.api.dto.TeacherDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Course;
+import cegep.management.system.api.model.Department;
+import cegep.management.system.api.model.Employee;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.model.StudentCourse;
 import cegep.management.system.api.model.Teacher;
@@ -21,12 +25,17 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final CourseService courseService;
     private final StudentCourseRepository studentCourseRepository;
+    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
     public TeacherService(TeacherRepository teacherRepository, CourseService courseService,
-            StudentCourseRepository studentCourseRepository) {
+            StudentCourseRepository studentCourseRepository, EmployeeService employeeService,
+            DepartmentService departmentService) {
         this.teacherRepository = teacherRepository;
         this.courseService = courseService;
         this.studentCourseRepository = studentCourseRepository;
+        this.employeeService = employeeService;
+        this.departmentService = departmentService;
     }
 
     public List<Teacher> getAllTeachers() {
@@ -54,8 +63,19 @@ public class TeacherService {
                 .collect(Collectors.toList());
     }
 
-    public Teacher createTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public Teacher createTeacher(TeacherDTO teacherDTO) {
+        EmployeeDTO dto = createEmployeeDTO(teacherDTO);
+        Department department = departmentService.getDepartmentById(teacherDTO.getDepartmentId()).orElseThrow(
+                () -> new RuntimeException("Can't find a department with id: " + teacherDTO.getDepartmentId()));
+
+        Employee employee = employeeService.createEmployee(dto);
+        return teacherRepository.save(new Teacher(employee, department));
+    }
+
+    private EmployeeDTO createEmployeeDTO(TeacherDTO teacherDTO) {
+        return new EmployeeDTO(teacherDTO.getFirstName(), teacherDTO.getLastName(), teacherDTO.getEmail(),
+                teacherDTO.getPhone(), teacherDTO.getPassword(), teacherDTO.getDateOfBirth(), teacherDTO.getSeniority(),
+                teacherDTO.getTypeId(), teacherDTO.getPersonId());
     }
 
     @Transactional
@@ -63,7 +83,6 @@ public class TeacherService {
         return teacherRepository.findById(teacherId).map(teacher -> {
             teacher.setEmployee(updatedTeacher.getEmployee());
             teacher.setDepartment(updatedTeacher.getDepartment());
-            teacher.setSeniority(updatedTeacher.getSeniority());
             return teacherRepository.save(teacher);
         }).orElseThrow(() -> new ResourceNotFoundException("Teacher not found"));
     }

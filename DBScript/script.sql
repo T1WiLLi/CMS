@@ -50,10 +50,8 @@ CREATE TABLE employee (
 
 -- Create 'teacher' table to store teacher-specific information
 CREATE TABLE teacher (
-    teacher_id SERIAL PRIMARY KEY, -- Primary key with auto-increment
-    employee_id INT NOT NULL UNIQUE, -- Foreign key referencing 'employee', not null, unique
+    employee_id INT NOT NULL UNIQUE PRIMARY KEY, -- Foreign key referencing 'employee', not null, unique
     department_id INT, -- Foreign key referencing 'department'
-    seniority VARCHAR(50), -- Seniority level
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON DELETE CASCADE, -- Delete teacher if employee is deleted
     FOREIGN KEY (department_id) REFERENCES department(id)
 );

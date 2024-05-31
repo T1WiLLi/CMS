@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.EvaluationDTO;
 import cegep.management.system.api.model.Evaluation;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.service.EvaluationService;
@@ -34,8 +35,8 @@ public class EvaluationController {
     }
 
     @PostMapping
-    public ResponseEntity<Evaluation> createEvaluation(@RequestBody Evaluation evaluation) {
-        Evaluation createdEvaluation = evaluationService.createEvaluation(evaluation);
+    public ResponseEntity<Evaluation> createEvaluation(@RequestBody EvaluationDTO evaluationDTO) {
+        Evaluation createdEvaluation = evaluationService.createEvaluation(evaluationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdEvaluation);
     }
 

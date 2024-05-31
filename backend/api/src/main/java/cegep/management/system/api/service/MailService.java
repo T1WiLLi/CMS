@@ -3,6 +3,7 @@ package cegep.management.system.api.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cegep.management.system.api.dto.MailDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Mail;
 import cegep.management.system.api.model.Person;
@@ -44,8 +45,13 @@ public class MailService {
         return mailRepository.findByReceiver(receiver);
     }
 
-    public Mail createMail(Mail mail) {
-        return mailRepository.save(mail);
+    public Mail createMail(MailDTO mailDTO) {
+        Person receiver = personRepository.findById(mailDTO.getReceiverId())
+                .orElseThrow(() -> new RuntimeException("Can't find the receiver Id: " + mailDTO.getReceiverId()));
+        Person sender = personRepository.findById(mailDTO.getSenderId())
+                .orElseThrow(() -> new RuntimeException("Can't find the sender id: " + mailDTO.getSenderId()));
+        return mailRepository
+                .save(new Mail(receiver, sender, mailDTO.getSubject(), mailDTO.getContent(), mailDTO.getDate()));
     }
 
     @Transactional

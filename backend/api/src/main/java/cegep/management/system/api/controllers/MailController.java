@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cegep.management.system.api.dto.MailDTO;
 import cegep.management.system.api.model.Mail;
 import cegep.management.system.api.service.MailService;
 
@@ -50,8 +51,8 @@ public class MailController {
     }
 
     @PostMapping
-    public ResponseEntity<Mail> createMail(@RequestBody Mail mail) {
-        Mail createdMail = mailService.createMail(mail);
+    public ResponseEntity<Mail> createMail(@RequestBody MailDTO mailDTO) {
+        Mail createdMail = mailService.createMail(mailDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdMail);
     }
 
