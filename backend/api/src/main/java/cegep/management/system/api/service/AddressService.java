@@ -2,6 +2,7 @@ package cegep.management.system.api.service;
 
 import org.springframework.stereotype.Service;
 
+import cegep.management.system.api.dto.AddressDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
 import cegep.management.system.api.model.Address;
 import cegep.management.system.api.model.Person;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class AddressService {
 
     private final AddressRepository addressRepository;
+    private final PersonService personService;
 
-    public AddressService(AddressRepository addressRepository) {
+    public AddressService(AddressRepository addressRepository, PersonService personService) {
         this.addressRepository = addressRepository;
+        this.personService = personService;
     }
 
     public List<Address> getAllAddresses() {
@@ -32,7 +35,11 @@ public class AddressService {
         return this.addressRepository.findByUser(user);
     }
 
-    public Address createAddress(Address address) {
+    public Address createAddress(AddressDTO addressDTO) {
+        Person person = personService.getUserById(addressDTO.getUserId())
+                .orElseThrow(() -> new RuntimeException("Can't find a Person with the id: " + addressDTO.getUserId()));
+        Address address = new Address(person, addressDTO.getAddress(), addressDTO.getCity(), addressDTO.getProvince(),
+                addressDTO.getPostalCode());
         return this.addressRepository.save(address);
     }
 

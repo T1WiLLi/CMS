@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cegep.management.system.api.dto.AddressDTO;
 import cegep.management.system.api.model.Address;
 import cegep.management.system.api.service.AddressService;
 import cegep.management.system.api.service.PersonService;
@@ -41,8 +42,8 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Address> createAddress(@RequestBody Address address) {
-        Address newAddress = addressService.createAddress(address);
+    public ResponseEntity<Address> createAddress(@RequestBody AddressDTO addressDTO) {
+        Address newAddress = addressService.createAddress(addressDTO);
         return ResponseEntity.status(201).body(newAddress);
     }
 
