@@ -18,8 +18,7 @@ public class CmsApp extends Application {
             stage.setScene(scene);
             stage.show();
             stage.setTitle("CMS");
-            stage.setMinHeight(816);
-            stage.setMaxHeight(1070);
+            stage.setResizable(false);
             stage.getIcons().add(new Image(getClass().getResource("/com/cms/assets/icon/cms-icon.png").toExternalForm()));
         } catch (Exception e) {
             e.printStackTrace();

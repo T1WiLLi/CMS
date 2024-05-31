@@ -33,6 +33,12 @@ public class MenuController {
     @FXML 
     private Pane logoutIconPane;
 
+    @FXML 
+    private Pane quickActionPaneDown;
+
+    @FXML 
+    private Pane quickActionPaneSide;
+
     @FXML
     private Button evaluationButton;
 
