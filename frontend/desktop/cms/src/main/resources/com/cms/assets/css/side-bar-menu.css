@@ -9,17 +9,11 @@
 }
 
 .homeButton {
-    -fx-background-color: #39387b; /* Background color */
-    -fx-text-fill: #6AE9F1; /* Text color */
+    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
+    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
     -fx-padding: 10px 65px 10px 10px;
     -fx-font-size: 18px;
     -fx-font-weight: bold; /* Make text bold */
-}
-
-/* Hover state for Home button */
-.homeButton:hover {
-    -fx-background-color: #6463A8; /* Same as normal to keep it unchanged */
-    -fx-text-fill: #39387B; /* Same as normal to keep it unchanged */
 }
 
 .evaluationButton {
@@ -122,5 +116,12 @@
     -fx-text-fill: #6AE9F1; /* Same as normal to keep it unchanged */
 }
 
+.downButton {
+    -fx-background-color: #6AE9F1; /* Background color */
+    -fx-padding: 10px 60px 10px 10px; /* Initial padding */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold; /* Make text bold */
+    -fx-background-radius: 20px;
 
+}
 
