@@ -73,8 +73,7 @@ public class StudentService {
 
             return this.studentRepository.save(student);
         }
-        return null;
-
+        throw new RuntimeException("Failed to create person");
     }
 
     @Transactional
