@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import cegep.management.system.api.dto.CourseDTO;
 import cegep.management.system.api.error.ResourceNotFoundException;
+import cegep.management.system.api.interfaces.CourseInterface;
 import cegep.management.system.api.model.Course;
 import cegep.management.system.api.model.Department;
 import cegep.management.system.api.model.Student;
@@ -57,7 +58,7 @@ public class CourseService {
     }
 
     @Transactional
-    public Course updateCourse(Long id, Course courseDetails) {
+    public Course updateCourse(Long id, CourseInterface courseDetails) {
         return this.courseRepository.findById(id)
                 .map(course -> {
                     course.setName(courseDetails.getName());

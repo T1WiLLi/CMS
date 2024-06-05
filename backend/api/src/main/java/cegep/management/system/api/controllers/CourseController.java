@@ -1,6 +1,7 @@
 package cegep.management.system.api.controllers;
 
 import cegep.management.system.api.dto.CourseDTO;
+import cegep.management.system.api.interfaces.CourseInterface;
 import cegep.management.system.api.model.Course;
 import cegep.management.system.api.model.Student;
 import cegep.management.system.api.service.CourseService;
@@ -41,7 +42,7 @@ public class CourseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody Course courseDetails) {
+    public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody CourseInterface courseDetails) {
         Course updatedCourse = courseService.updateCourse(id, courseDetails);
         return ResponseEntity.ok(updatedCourse);
     }
