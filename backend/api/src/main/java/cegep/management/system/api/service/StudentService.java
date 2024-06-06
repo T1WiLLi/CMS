@@ -11,8 +11,11 @@ import cegep.management.system.api.model.Person;
 import cegep.management.system.api.model.Program;
 import cegep.management.system.api.model.Session;
 import cegep.management.system.api.model.Student;
+import cegep.management.system.api.model.StudentCourse;
+import cegep.management.system.api.model.StudentCourseId;
 import cegep.management.system.api.repo.ProgramRepository;
 import cegep.management.system.api.repo.SessionRepository;
+import cegep.management.system.api.repo.StudentCourseRepository;
 import cegep.management.system.api.repo.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -24,6 +27,7 @@ public class StudentService {
     private final PersonService personService;
     private final ProgramRepository programRepository;
     private final SessionRepository sessionRepository;
+    private final StudentCourseRepository studentCourseRepository;
     private final SessionService sessionService;
 
     public StudentService(StudentRepository studentRepository,
@@ -33,16 +37,24 @@ public class StudentService {
         this.personService = personService;
         this.programRepository = programRepository;
         this.sessionRepository = sessionRepository;
+        this.studentCourseRepository = null;
         this.sessionService = sessionService;
     }
 
-    // Basic CRUD op for the studentList
     public List<Student> findAllStudent() {
         return this.studentRepository.findAll();
     }
 
     public Optional<Student> findStudentById(Long id) {
         return this.studentRepository.findById(id);
+    }
+
+    public List<StudentCourse> findAllStudentCourse() {
+        return this.studentCourseRepository.findAll();
+    }
+
+    public Optional<StudentCourse> findStudentCourseById(Long studentId, Long courseId) {
+        return this.studentCourseRepository.findById(new StudentCourseId(studentId, courseId));
     }
 
     public Student createStudent(StudentDTO studentDTO) {
