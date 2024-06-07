@@ -24,6 +24,7 @@ public class CmsApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public static void start() {

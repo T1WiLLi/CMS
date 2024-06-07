@@ -27,6 +27,7 @@ public class MenuController {
     private Scene scene;
     private Parent root;
 
+<<<<<<< HEAD
     @FXML
     private Pane pane;
 
@@ -40,6 +41,21 @@ public class MenuController {
     private Pane quickActionPaneSide;
 
     @FXML
+=======
+    @FXML 
+    private Pane pane;
+
+    @FXML 
+    private Pane logoutIconPane;
+
+    @FXML 
+    private Pane quickActionPaneDown;
+
+    @FXML 
+    private Pane quickActionPaneSide;
+
+    @FXML
+>>>>>>> e70d97f2817f83cc278945188244a9df60ca8f71
     private Button evaluationButton;
 
     @FXML
@@ -111,8 +127,13 @@ public class MenuController {
 
         starIcon.setImage(lightStarIcon);
 
+<<<<<<< HEAD
         evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> starIcon.setImage(darkStarIcon));
         evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> starIcon.setImage(lightStarIcon));
+=======
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->  starIcon.setImage(darkStarIcon));
+        evaluationButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->  starIcon.setImage(lightStarIcon));
+>>>>>>> e70d97f2817f83cc278945188244a9df60ca8f71
 
         // Classes Icon
 
@@ -151,6 +172,10 @@ public class MenuController {
 
         settingsIcon.setImage(lightSettingsIcon);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e70d97f2817f83cc278945188244a9df60ca8f71
         settingsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> settingsIcon.setImage(darkSettingsIcon));
         settingsButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> settingsIcon.setImage(lightSettingsIcon));
 
@@ -161,7 +186,11 @@ public class MenuController {
 
         profileIcon.setImage(lightProfileIcon);
 
+<<<<<<< HEAD
         profileButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> profileIcon.setImage(darkProfileIcon));
+=======
+        profileButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> profileIcon.setImage(darkProfileIcon ));
+>>>>>>> e70d97f2817f83cc278945188244a9df60ca8f71
         profileButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> profileIcon.setImage(lightProfileIcon));
 
         setupButtonAnimation(evaluationButton);
@@ -171,6 +200,7 @@ public class MenuController {
         setupButtonAnimation(settingsButton);
         setupButtonAnimation(profileButton);
 
+<<<<<<< HEAD
         logoutButton.layoutYProperty()
                 .bind(Bindings.createDoubleBinding(() -> pane.getHeight() - logoutButton.getHeight(),
                         pane.heightProperty(), logoutButton.heightProperty()));
@@ -178,6 +208,13 @@ public class MenuController {
         logoutIconPane.layoutYProperty()
                 .bind(Bindings.createDoubleBinding(() -> pane.getHeight() - logoutIconPane.getHeight(),
                         pane.heightProperty(), logoutIconPane.heightProperty()));
+=======
+        logoutButton.layoutYProperty().bind(Bindings.createDoubleBinding(() -> 
+        pane.getHeight() - logoutButton.getHeight(), pane.heightProperty(), logoutButton.heightProperty()));
+
+        logoutIconPane.layoutYProperty().bind(Bindings.createDoubleBinding(() -> 
+        pane.getHeight() - logoutIconPane.getHeight(), pane.heightProperty(), logoutIconPane.heightProperty()));
+>>>>>>> e70d97f2817f83cc278945188244a9df60ca8f71
 
     }
 
