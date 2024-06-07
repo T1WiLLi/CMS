@@ -203,5 +203,6 @@ public class MenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 }

@@ -6,6 +6,11 @@
     -fx-background-radius: 20px;
 }
 
+.loginButton:hover{
+    -fx-background-color: #132043;
+    -fx-text-fill: #6AE9F1; /* Same as normal to keep it unchanged */
+}
+
 .textField{
 
     -fx-background-radius: 5px;
