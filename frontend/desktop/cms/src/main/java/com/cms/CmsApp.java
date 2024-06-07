@@ -19,8 +19,8 @@ public class CmsApp extends Application {
             stage.show();
             stage.setTitle("CMS");
             stage.setResizable(false);
-            stage.getIcons().add(
-                    new Image(getClass().getResource("/com/cms/assets/icon/cms-icon.jpg").toExternalForm()));
+            stage.getIcons()
+                    .add(new Image(getClass().getResource("/com/cms/assets/icon/cms-icon.png").toExternalForm()));
         } catch (Exception e) {
             e.printStackTrace();
         }
