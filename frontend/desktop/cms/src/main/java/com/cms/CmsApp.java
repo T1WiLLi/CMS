@@ -16,11 +16,11 @@ public class CmsApp extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.show();
             stage.setTitle("CMS");
             stage.setResizable(false);
             stage.getIcons().add(
                     new Image(getClass().getResource("/com/cms/assets/icon/cms-icon.jpg").toExternalForm()));
-            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
