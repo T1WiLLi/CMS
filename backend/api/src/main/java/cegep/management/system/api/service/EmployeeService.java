@@ -37,9 +37,16 @@ public class EmployeeService {
     public Employee createEmployee(EmployeeDTO employeeDTO) {
         Type type = typeService.getTypeById(employeeDTO.getTypeId())
                 .orElseThrow(() -> new RuntimeException("Can't find type with id: " + employeeDTO.getTypeId()));
-        Person person = personService.getUserById(employeeDTO.getPersonId()).orElse(personService.createUser(new Person(
-                employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getEmail(), employeeDTO.getPhone(),
-                employeeDTO.getPassword(), employeeDTO.getDateOfBirth())));
+
+        Person person;
+        if (employeeDTO.getPersonId() != null) {
+            person = personService.getUserById(employeeDTO.getPersonId())
+                    .orElseThrow(() -> new RuntimeException("Can't find person with id: " + employeeDTO.getPersonId()));
+        } else {
+            person = personService.createUser(new Person(
+                    employeeDTO.getFirstName(), employeeDTO.getLastName(), employeeDTO.getEmail(),
+                    employeeDTO.getPhone(), employeeDTO.getPassword(), employeeDTO.getDateOfBirth()));
+        }
 
         return employeeRepository.save(new Employee(person, employeeDTO.getSeniority(), type));
     }
