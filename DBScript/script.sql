@@ -64,7 +64,7 @@ CREATE TABLE course (
     department_id INT,               -- Foreign key referencing 'department'
     teacher_id INT,                  -- Foreign key referencing 'teacher'
     FOREIGN KEY (department_id) REFERENCES department(id),
-    FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
+    FOREIGN KEY (teacher_id) REFERENCES teacher(employee_id)
 );
 
 -- Create 'academic_year' table to store academic year details
@@ -96,18 +96,6 @@ CREATE TABLE student (
     FOREIGN KEY (session_id) REFERENCES session(session_id)
 );
 
--- Create 'enrollment' table to store enrollment details for students
-CREATE TABLE enrollment (
-    enrollment_id SERIAL PRIMARY KEY,   -- Primary key with auto-increment
-    person_id INT NOT NULL,             -- Foreign key referencing 'student', not null
-    session_id INT NOT NULL,            -- Foreign key referencing 'session', not null
-    course_id INT NOT NULL,             -- Foreign key referencing 'course', not null
-    end_date DATE,                      -- End date of the enrollment
-    grade VARCHAR(2),                   -- Grade received
-    FOREIGN KEY (person_id) REFERENCES student(person_id) ON DELETE CASCADE, -- Delete enrollment if student is deleted
-    FOREIGN KEY (session_id) REFERENCES session(session_id),
-    FOREIGN KEY (course_id) REFERENCES course(id)
-);
 
 -- Create 'evaluation' table to store evaluation details for courses
 CREATE TABLE evaluation (
@@ -132,9 +120,13 @@ CREATE TABLE student_evaluation (
 CREATE TABLE student_course (
     person_id INT NOT NULL,            -- Foreign key referencing 'student', not null
     course_id INT NOT NULL,            -- Foreign key referencing 'course', not null
+    session_id INT NOT NULL,           -- Foreign key referencing 'session', not null
+    end_date DATE,                     -- End Date of the enrollment
+    grade INT NOT NULL,                -- Final / Current grade for that given course
     PRIMARY KEY (person_id, course_id),-- Composite primary key
     FOREIGN KEY (person_id) REFERENCES student(person_id) ON DELETE CASCADE, -- Delete record if student is deleted
-    FOREIGN KEY (course_id) REFERENCES course(id)
+    FOREIGN KEY (course_id) REFERENCES course(id),
+    FOREIGN KEY (session_id) REFERENCES session(session_id)
 );
 
 -- Create 'schedule' table to store class schedules for students
